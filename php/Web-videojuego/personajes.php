@@ -1,0 +1,122 @@
+<?php 
+
+namespace lista_personajes;
+// List with all characters data.
+$personajes = array(
+    array("id" => "1", "name" => "Lyn", "image" => "BG_Lyn", "ability_1" => "Cold_Invasion",
+    "ability_2" => "Frost_Blood", "ability_3" => "Precise_Snowball", "ability_4" => "Icy_Internal", "ultimate" => "Chill_Overflow",
+    "descriptionA1" => "Lyn desata una tormenta de hielo que invade el área objetivo, ralentizando a todos los enemigos y causando daño por frío. Los enemigos atrapados en la tormenta sufren un aumento en el daño que reciben de los ataques de Lyn durante un breve período.",
+    "descriptionA2" => "Lyn canaliza su energía en un ataque preciso, lanzando una lanza de hielo hacia su enemigo. Si el enemigo es golpeado, su sangre se convierte en hielo, aumentando el daño recibido por el siguiente ataque de Lyn. Esta habilidad revela brevemente el punto débil del enemigo.",
+    "descriptionA3" => "Lyn lanza una bola de nieve compacta que causa daño directo y aturde al enemigo durante un segundo. Si el enemigo está marcado con \"Frost Blood\", esta habilidad se carga rápidamente y puede ser lanzada nuevamente, infligiendo daño adicional.",
+    "descriptionA4" => "Concentrando su energía interna, Lyn se vuelve más resistente a los ataques. Durante un breve periodo, refleja un porcentaje del daño recibido como daño de hielo a los enemigos cercanos. Además, mientras la habilidad está activa, Lyn puede ver los puntos débiles de todos los enemigos, revelando su ubicación en el mapa.",
+    "descriptionU" => "Lyn invoca un torrente de energía helada que se despliega en un área amplia, causando daño masivo a todos los enemigos atrapados dentro. Los enemigos afectados quedan congelados durante unos segundos, lo que les impide moverse y atacar. Durante este tiempo, Lyn puede ver sus puntos débiles, permitiéndole ejecutar ataques críticos con su próxima habilidad.",
+    "character_description" => "Lyn, conocida como la 'Guardián del Invierno Eterno', es una mujer cabra dotada con habilidades sobrenaturales de hielo. Desde una temprana edad, fue entrenada en las artes del combate, perfeccionando su capacidad para detectar los puntos débiles de sus enemigos. Esto la convierte en una guerrera implacable en la batalla, capaz de utilizar su control del hielo para congelar a sus oponentes y fracturar sus defensas con precisión mortal.",
+    "health" => "75",
+    "shield" => "105",
+    "Movement_Speed" => "5.6",
+    "element" => "Ice"),
+
+    array(
+    "id" => "2", "name" => "Tao", "image" => "BG_Tao", "ability_1" => "Blade_in_Heart",
+    "ability_2" => "Resilient_Shield", "ability_3" => "Superior_Magazine", "ability_4" => "Galloping_Speed", "ultimate" => "Long-lasting_Bloom",
+    "descriptionA1" => "Tao invoca pétalos afilados de cerezos que flotan alrededor de su enemigo. Con cada ataque que realiza, los pétalos se lanzan hacia el oponente, infligiendo daño cortante. Cuanto más se debilita el enemigo, más afilados y rápidos se vuelven los pétalos, simbolizando el corte preciso de una espada que va directo al corazón.",
+    "descriptionA2" => "Tao canaliza la energía de los cerezos en flor para crear una barrera de pétalos que la rodea. Este escudo tiene la capacidad de regenerarse, fortalecerse con cada impacto recibido y florecer nuevamente, permitiéndole resistir ataques poderosos mientras aumenta su durabilidad.",
+    "descriptionA3" => "En medio del combate, Tao usa sus habilidades para aumentar la capacidad de sus armas, imbuyendo los proyectiles con la esencia de los cerezos. Durante un corto periodo de tiempo, su munición se vuelve ilimitada y cada disparo deja una estela de pétalos explosivos, creando una lluvia de destrucción que aturde a los enemigos.",
+    "descriptionA4" => "Canalizando su naturaleza animal, Tao invoca una velocidad sobrenatural mientras los pétalos de cerezo la rodean. Esta habilidad la convierte en una sombra fugaz, permitiéndole moverse entre sus enemigos sin ser vista y desatar ataques rápidos y mortales. Su velocidad aumenta con el tiempo, al igual que su capacidad de esquivar ataques.",
+    "descriptionU" => "Tao invoca un gigantesco árbol de cerezo en pleno florecimiento que afecta todo el campo de batalla. Los pétalos caen lentamente, curando a Tao y a sus aliados mientras debilitan a los enemigos cercanos, drenando su energía vital. El árbol permanece activo por un tiempo prolongado, renovando constantemente las fuerzas de su equipo y creando un área en la que Tao domina por completo.",
+    "character_description" => "Tao nació en una pequeña aldea rodeada de montañas, conocida por sus imponentes cerezos en flor. Desde joven, mostró una conexión sobrenatural con la naturaleza, especialmente con los cerezos. Sus padres, guardianes del bosque, le enseñaron a respetar y canalizar la energía que estos árboles sagrados ofrecían.",
+    "health" => "75",
+    "shield" => "105",
+    "Movement_Speed" => "5.2",
+    "element" => "Poison"),
+
+    array(
+    "id" => "3", "name" => "Xing", "image" => "BG_Xing", "ability_1" => "Heaven_Armory",
+    "ability_2" => "Indestructible_Spell", "ability_3" => "Enhanced_Artifact", "ability_4" => "Proficient_Trick", "ultimate" => "Steady_Stance",
+    "descriptionA1" => "Xing invoca un arsenal celestial que aparece a su alrededor. Cada arma tiene propiedades únicas, como espadas de luz que cortan a través de la oscuridad y arcos que disparan flechas de energía. Estas armas no solo le permiten atacar a sus enemigos, sino que también le ofrecen protección, creando escudos temporales que desvían los ataques. Xing puede seleccionar las armas más adecuadas según la situación, haciendo de esta habilidad una herramienta versátil en la batalla.",
+    "descriptionA2" => "Esta habilidad permite a Xing lanzar un hechizo de protección que lo vuelve invulnerable durante un breve período. Cualquier daño que reciba es absorbido por una barrera mágica que resplandece a su alrededor. Además, el hechizo puede reflejar el daño hacia los atacantes, causando que sus enemigos sufran las consecuencias de sus propios ataques. Este hechizo es especialmente útil cuando Xing se encuentra en situaciones desesperadas.",
+    "descriptionA3" => "Xing puede mejorar los objetos a su alrededor, transformándolos en poderosos artefactos. Por ejemplo, una simple piedra puede convertirse en una bomba de energía, y un bastón en una lanza poderosa. Esta habilidad no solo le permite aprovechar el entorno, sino que también fomenta la creatividad en combate, ya que Xing puede adaptarse a las circunstancias utilizando lo que tiene a su alcance.",
+    "descriptionA4" => "Con su agilidad natural y astucia, Xing utiliza esta habilidad para realizar trucos impresionantes que desorientan a sus oponentes. Puede crear ilusiones temporales de sí mismo para confundir a sus enemigos, hacer acrobacias para evadir ataques, o desviar la atención mientras sus clones toman acción. Esta habilidad es fundamental para crear oportunidades de ataque y escapar de situaciones peligrosas.",
+    "descriptionU" => "Tao invoca un gigantesco árbol de cerezo en pleno florecimiento que afecta todo el campo de batalla. Los pétalos caen lentamente, curando a Tao y a sus aliados mientras debilitan a los enemigos cercanos, drenando su energía vital. El árbol permanece activo por un tiempo prolongado, renovando constantemente las fuerzas de su equipo y creando un área en la que Tao domina por completo.",
+    "character_description" => "Como su habilidad definitiva, Xing entra en una postura de combate especial que le otorga una calma sobrenatural. En esta posición, puede canalizar su energía para aumentar la fuerza y la velocidad de sus ataques, al mismo tiempo que refuerza la defensa de sus clones. Durante un breve período, todos sus movimientos son más precisos y poderosos, permitiéndole enfrentarse a los enemigos más fuertes con confianza y determinación. Al activar esta habilidad, también puede curar a sus clones y restaurar sus energías, haciendo de esta habilidad un recurso estratégico en momentos críticos de la batalla.",
+    "health" => "75",
+    "shield" => "115",
+    "Movement_Speed" => "5.5",
+    "element" => "Physical"),
+
+    array(
+        "id" => "4", "name" => "Nona", "image" => "BG_Nona", "ability_1" => "Aggressive_Craft",
+        "ability_2" => "Armor_Reinforcement", "ability_3" => "Improved_Craft", "ability_4" => "Lucky_Magazine", "ultimate" => "Emergency_Function",
+        "descriptionA1" => "Nona es capaz de construir rápidamente un arma o dispositivo ofensivo en medio del combate. Utilizando su destreza, crea trampas explosivas o armas de corto alcance que pueden infligir un gran daño a sus enemigos. Estas creaciones son temporales pero altamente destructivas, permitiendo a Nona tomar ventaja táctica en el combate.",
+        "descriptionA2" => "Con un comando rápido, Nona mejora la armadura de Kibo o la suya propia, aumentando la resistencia a los ataques durante un período de tiempo. Esta habilidad le otorga a ella y a su robot una protección adicional que les permite soportar los golpes más fuertes de sus enemigos, dándoles tiempo para contraatacar o planear una mejor estrategia.",
+        "descriptionA3" => "Esta habilidad permite a Nona mejorar cualquier dispositivo que haya creado previamente. Con su ingenio, puede hacer que sus invenciones duren más tiempo, sean más eficientes, o incluso combinen efectos. Ya sea que se trate de una trampa o un dron auxiliar, esta mejora le otorga versatilidad adicional para adaptarse a las situaciones más complicadas.",
+        "descriptionA4" => "Nona instala un \"cargador especial\" en las armas que ha creado, lo que garantiza un golpe crítico o un efecto sorpresa en los próximos disparos. Este cargador proporciona un boost significativo de potencia, ya sea en forma de daño explosivo o de efectos de debilitamiento en los enemigos, aumentando sus probabilidades de victoria.",
+        "descriptionU" => "Cuando Nona o Kibo están en grave peligro, Nona activa una secuencia de emergencia en su compañero robot. Kibo libera un escudo energético que cubre tanto a Nona como a él, reparando gradualmente el daño y potenciando temporalmente sus capacidades defensivas y ofensivas. Este escudo no solo les brinda tiempo para recuperarse, sino que también puede lanzar ondas de choque para derribar a los enemigos cercanos.",
+        "character_description" => "Nona nació en un pequeño pueblo escondido en los bosques de bambú de una tierra lejana. Desde muy joven, su curiosidad por el mundo y su habilidad para desmontar cualquier cosa la convirtieron en la inventora más talentosa de su aldea. A pesar de ser una niña, su inteligencia y determinación la llevaron a crear \"Kibo\", un fiel robot que la acompaña en todas sus aventuras. Kibo fue construido por Nona con piezas recicladas de antiguos autómatas, y juntos forman un equipo inseparable.",
+        "health" => "75",
+        "shield" => "95",
+        "Movement_Speed" => "5.2",
+        "element" => "Fire"),
+
+        array(
+            "id" => "5", "name" => "Li", "image" => "BG_Li", "ability_1" => "Flame_Arsenal",
+            "ability_2" => "Flaming_Cape", "ability_3" => "Overheating", "ability_4" => "Practice_Makes_Perfect", "ultimate" => "Hunt_of_Fire",
+            "descriptionA1" => "Li invoca un arsenal de armas hechas de puro fuego, adaptándose a la situación. Puede lanzar dagas flamígeras a larga distancia o invocar espadas ardientes para el combate cuerpo a cuerpo. Estas armas no solo queman a sus enemigos, sino que también pueden atravesar defensas mágicas o físicas, dejando una marca abrasadora en su objetivo.",
+            "descriptionA2" => "Li envuelve su cuerpo en una capa de fuego que arde intensamente. Mientras la capa esté activa, cualquier enemigo que se acerque demasiado recibirá daño continuo por quemaduras. Además, le otorga una protección extra contra ataques físicos y de energía, ya que la capa absorbe parte del impacto. Los enemigos que intentan atacar a Li cuerpo a cuerpo son repelidos por el calor abrasador.",
+            "descriptionA3" => "A medida que Li lucha, su poder de fuego crece exponencialmente. Esta habilidad aumenta temporalmente su fuerza y velocidad de ataque, pero con un costo. Si permanece en este estado demasiado tiempo, comenzará a sufrir daño propio por el exceso de calor. Sin embargo, Li puede aprovechar este estado para lanzar ataques devastadores en poco tiempo, sacrificando su propia seguridad para acabar con sus enemigos.",
+            "descriptionA4" => "Li ha perfeccionado el arte del combate con el fuego a lo largo de los años. Con esta habilidad, reduce el tiempo de recarga de todas sus habilidades mientras se mantiene en combate, lo que le permite lanzar ataques más frecuentemente. Cada vez que acierta un ataque o usa una habilidad, la eficiencia de su poder aumenta, haciéndola más letal cuanto más prolongado sea el enfrentamiento.",
+            "descriptionU" => "En su forma definitiva, Li entra en un estado de caza predatoria, desatando su poder de fuego al máximo. Su cuerpo entero arde con una furia incontrolable, permitiéndole moverse a una velocidad sobrehumana y atacar con una fuerza devastadora. En este estado, sus enemigos son marcados por un aura de llamas, haciéndolos más vulnerables a sus ataques. Mientras dure \"Hunt of Fire\", Li puede desplazarse entre las sombras y reaparecer detrás de sus enemigos, consumiéndolos con su fuego antes de que puedan reaccionar.",
+            "character_description" => "Li, una mujer zorro asiática de impresionante belleza y agilidad, nació en un pequeño pueblo oculto entre las montañas, donde las antiguas artes de la magia y el combate cuerpo a cuerpo se entrelazaban en la vida diaria. Desde temprana edad, Li mostró una conexión única con el fuego. Mientras otros podían temer las llamas, ella las controlaba con gracia, moldeándolas a su voluntad. Pero su destino no siempre fue claro.
+            Li descubrió su verdadera naturaleza durante una invasión al pueblo, cuando un oscuro ejército, liderado por una fuerza malévola, arrasó con todo a su paso. Desesperada y al borde del abismo, el poder ancestral del fuego que llevaba dentro despertó. A partir de ese día, se convirtió en la defensora de su hogar, luchando no solo para proteger a los inocentes, sino también para erradicar el mal que amenazaba con consumir el mundo.",
+            "health" => "75",
+            "shield" => "95",
+            "Movement_Speed" => "5.2",
+            "element" => "Fire"),
+
+        array(
+            "id" => "6", "name" => "Momo", "image" => "BG_Momo", "ability_1" => "Artist_Vision",
+            "ability_2" => "Imitation", "ability_3" => "Ink_Armor", "ability_4" => "Ink_Spirit_Fusion", "ultimate" => "Lingering_Rhythm",
+            "descriptionA1" => "Momo utiliza su maestría en la caligrafía y el dibujo para prever los movimientos de sus enemigos. Con esta habilidad, puede pintar símbolos mágicos en el aire que le permiten anticipar los ataques o detectar trampas ocultas. Al activar Artist Vision, todo su entorno se vuelve más claro para ella, otorgándole una mayor conciencia del campo de batalla y permitiéndole evadir o bloquear cualquier ataque con precisión.",
+            "descriptionA2" => "Con su control sobre la tinta, Momo puede crear una copia exacta de sí misma, un clon de tinta que imita sus movimientos y engaña a los enemigos. Este clon actúa como una distracción, absorbiendo golpes o atacando a distancia. Aunque la imitación no es tan fuerte como el original, es lo suficientemente sólida para desorientar a sus enemigos o lanzarse en una ofensiva coordinada junto con Momo.",
+            "descriptionA3" => "Momo dibuja rápidamente sobre su cuerpo patrones intrincados de tinta mágica, que se solidifican y crean una armadura oscura que la protege de ataques físicos y mágicos. Ink Armor absorbe el impacto de los ataques entrantes, desvaneciéndose lentamente con cada golpe. Además, al romperse, la armadura libera ráfagas de tinta que pueden cegar temporalmente a los enemigos cercanos.",
+            "descriptionA4" => "Momo invoca espíritus ancestrales que se fusionan con su cuerpo a través de la tinta. Con esta habilidad, adquiere temporalmente una fuerza y agilidad sobrehumanas, y sus movimientos de artes marciales se vuelven imbuidos de energía espiritual. Al estar fusionada con estos espíritus, sus ataques cuerpo a cuerpo tienen un aura de tinta que deja cicatrices de energía en sus enemigos, debilitándolos con el tiempo.",
+            "descriptionU" => "Su habilidad definitiva convierte el campo de batalla en una obra maestra en movimiento. Momo invoca un lienzo de tinta que cubre el suelo bajo sus pies y el de sus enemigos. A medida que baila con sus artes marciales, cada paso y movimiento deja trazos de tinta que explotan o envuelven a los enemigos en látigos oscuros. Lingering Rhythm transforma cada ataque y movimiento de Momo en una coreografía imparable, haciendo que cada golpe fluya hacia el siguiente en una sinfonía letal. La tinta en el suelo permanece activa incluso después de que Momo haya terminado, ralentizando y atrapando a cualquiera que quede atrapado en sus trazos.",
+            "character_description" => "Momo es una mujer ardilla de origen asiático, conocida por su agilidad y destreza tanto en las artes marciales como en el uso de la tinta mágica, un poder antiguo que ha pasado de generación en generación en su familia. Creció en un pequeño pueblo, en las profundidades de un bosque rodeado de cerezos en flor, donde su clan vivía en paz y armonía, protegiendo secretos ancestrales. Desde pequeña, Momo fue entrenada en las disciplinas del combate cuerpo a cuerpo, pero también aprendió el arte de la caligrafía, una práctica que despertó en ella un talento especial: la capacidad de dar vida a sus dibujos y controlar la tinta como un arma mágica.",
+            "health" => "75",
+            "shield" => "95",
+            "Movement_Speed" => "5.5",
+            "element" => "Physical"),
+
+            array(
+                "id" => "7", "name" => "Crown", "image" => "BG_Crown", "ability_1" => "Efficient_Orb",
+                "ability_2" => "Energy_Charge", "ability_3" => "Large_Area_Smoke", "ability_4" => "Contingency_Plan", "ultimate" => "Mystic_Guard",
+                "descriptionA1" => "Crown invoca un orbe de energía eléctrica que lanza hacia sus enemigos. Al impactar, el orbe explota y libera una descarga eléctrica precisa, paralizando a sus enemigos durante unos segundos. Esta habilidad es perfecta para desactivar a sus oponentes y ganar una ventaja en combate.",
+                "descriptionA2" => "Aprovechando la electricidad en su entorno, Crown recarga rápidamente su energía, lo que aumenta temporalmente su velocidad y potencia sus ataques de rayo. Durante este estado, sus golpes liberan pequeños arcos eléctricos que dañan a los enemigos cercanos.",
+                "descriptionA3" => "Crown genera una nube de humo oscuro cargada de estática en un área extensa, que confunde y ralentiza a los enemigos dentro de ella. Mientras están dentro del humo, los adversarios no pueden ver bien y son más vulnerables a los ataques sorpresa de Crown.",
+                "descriptionA4" => "Siempre un paso adelante, Crown ha desarrollado una habilidad que le permite prever el siguiente ataque de su enemigo. Esta habilidad le otorga un breve escudo de electricidad que lo protege del próximo golpe mientras le permite contraatacar con un rayo rápido.",
+                "descriptionU" => "Desatando el poder completo de sus habilidades, Crown se rodea de una barrera de energía mística electrificada. Esta barrera no solo lo protege de cualquier daño, sino que también lanza rayos en todas direcciones, atacando a todos los enemigos cercanos. En este estado, Crown se convierte en una fortaleza impenetrable, controlando el campo de batalla con su tormenta personal de rayos.",
+                "character_description" => "Crown es un joven con la agilidad y astucia de un gato, pero con un poder mucho más imponente: el control de los rayos. Nacido en una pequeña aldea que yacía al pie de montañas azotadas por tormentas interminables, su conexión con las fuerzas de la electricidad fue evidente desde que era solo un niño. Mientras otros temían las tormentas, él sentía una extraña calma y control cuando los relámpagos iluminaban el cielo. Con el tiempo, desarrolló la habilidad de invocar y controlar el rayo, usando su velocidad sobrehumana y energía eléctrica como armas poderosas.",
+                "health" => "90",
+                "shield" => "110",
+                "Movement_Speed" => "5.0",
+                "element" => "Lighting"),
+            
+                array(
+                    "id" => "8", "name" => "Zi", "image" => "BG_Zi", "ability_1" => "Card_Practice",
+                    "ability_2" => "Concentration", "ability_3" => "Scroll_Divination", "ability_4" => "Stellar_Recovery", "ultimate" => "Star_Rearrangement",
+                    "descriptionA1" => "Zi es un maestro del tarot, y esta habilidad le permite canalizar la energía eléctrica en sus cartas. Cuando lanza una carta, esta no solo revela el futuro, sino que explota con una descarga eléctrica al impactar a sus enemigos. Las cartas varían en poder según su arcano, proporcionando efectos secundarios como aturdimientos o descargas en cadena a los enemigos cercanos.",
+                    "descriptionA2" => "Esta habilidad permite a Zi entrar en un estado de profunda concentración. Durante unos segundos, se vuelve inmune a interrupciones y recibe una mejora considerable en su velocidad de lanzamiento y precisión de las cartas. La electricidad que corre por su cuerpo se intensifica, aumentando la potencia de sus ataques y su capacidad para prever los movimientos del enemigo.",
+                    "descriptionA3" => "Al invocar antiguos pergaminos sagrados, Zi puede predecir los ataques enemigos y contrarrestarlos antes de que se desaten. Al activarse, esta habilidad otorga a Zi una visión anticipada de los ataques de los oponentes, permitiéndole esquivar con facilidad o aumentar su defensa momentáneamente. Mientras la visión está activa, también puede lanzar contraataques eléctricos imbuidos en sus pergaminos.",
+                    "descriptionA4" => "Usando el poder de las estrellas, Zi se cura a sí mismo y a sus aliados cercanos. Esta habilidad concentra la energía cósmica que acumula de las cartas del tarot, restaurando su salud y recargando su energía eléctrica. Al usar esta habilidad, Zi también genera un campo protector eléctrico que reduce el daño recibido durante unos segundos.",
+                    "descriptionU" => "Esta es la habilidad definitiva de Zi, en la que manipula las constelaciones del cielo y el destino de sus enemigos. Al invocar el poder de las estrellas, Zi desata un rayo masivo que afecta a todos los enemigos en el área, aturdiéndolos y desorganizando su formación. Las cartas del tarot se esparcen en el aire, reconfigurando los destinos de sus oponentes y alterando su suerte de manera devastadora. Los enemigos quedan debilitados, mientras que Zi y sus aliados reciben un incremento temporal en todas sus habilidades.",
+                    "character_description" => "Zi, cuya sabiduría ancestral está impregnada de electricidad y misterio. Desde pequeño, fue considerado un prodigio en su aldea, capaz de leer el futuro y dominar las tormentas. Criado en las montañas de un remoto templo, Zi fue entrenado por monjes que le enseñaron el arte del tarot y el poder de los elementos, especialmente el rayo. Sus ojos, afilados y penetrantes como los de un búho, ven más allá del tiempo y del espacio, percibiendo los hilos invisibles del destino.
+                    Además de su habilidad natural para controlar la electricidad, Zi se especializó en el manejo de las cartas del tarot, un poder que heredó de los antiguos sabios. Cada carta que saca tiene un significado único y un poder asociado. Al lanzarlas en combate, las cartas se transforman en proyectiles cargados con energía eléctrica o hechizos de control que pueden influir en los resultados de una batalla.",
+                    "health" => "75",
+                    "shield" => "115",
+                    "Movement_Speed" => "5.7",
+                    "element" => "Lighting")
+    
+);
+
+
+?>
