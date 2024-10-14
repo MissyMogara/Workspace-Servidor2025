@@ -30,6 +30,7 @@
                                                 id="exampleInputPassword" placeholder="Contraseña" 
                                                 name="password" pattern="^(?=.*[a-z]).{8,}$" required>
                                         </div>
+                                        <div id="passHelp" class="form-text">La contraseña ha de tener 8 caracteres y al menos una minuscula.</div>
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Login" name="login">
                                         <hr>
                                         <?php 

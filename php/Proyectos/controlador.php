@@ -71,6 +71,25 @@ if($_POST){
         }
         
     }
+    //Create new project
+    if(isset($_POST["nuevo"])){
+        
+        //  Recive project information from form
+        $registeredProject = [
+            $id = counterProjects() + 1,
+            $nombre = $_POST["project-name"],
+            $fechaInicio = $_POST["initial-date"],
+            $fechaFinPrevista = $_POST["finishig-date"],
+            $diasTranscurridos = $_POST["days-passed"],
+            $porcentajeCompletado = $_POST["percentage"],
+            $importancia = $_POST["importance"]
+        ];
+
+        // Put the project into the session
+        array_push($_SESSION["proyectos"], $registeredProject);
+        header("Location: proyectos.php");
+
+    }
 }
 
 //Actions
