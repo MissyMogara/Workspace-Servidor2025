@@ -26,7 +26,7 @@ $_SESSION["proyectos"] = array(
 //Create user array for users for the first time with an example user
 $_SESSION["usuarios"] = array(
     array(
-        "nombre" => "Miqota2",
+        "nombre" => "Miqota",
         "apellidos" => "PurrPurr",
         "password" => "1234567e",
         "email" => "miqota@gmail.com",
