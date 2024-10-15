@@ -2,11 +2,11 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="proyectos.php">
     <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-laugh-wink"></i>
+        <i class="fas fa-sun"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Dashboard - Mónica</div>
+    <div class="sidebar-brand-text mx-3">Dashboard Mónica</div>
 </a>
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
@@ -33,8 +33,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones:</h6>
-                        <a class="collapse-item" href="nuevoProyecto.php">Añadir</a>
-                        <a class="collapse-item" href="controlador.php?action=eliminarTodo">Eliminar todo</a>
+                        <a class="collapse-item" href="nuevoProyecto.php"><i class="fas fa-plus-circle"></i> Añadir</a>
+                        <a class="collapse-item" href="controlador.php?action=eliminarTodo"><i class="fas fa-trash"></i> Eliminar todo</a>
                     </div>
                 </div>
             </li>

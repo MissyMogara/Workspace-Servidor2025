@@ -27,7 +27,9 @@
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 <?php
-                                echo $_SESSION["usuarioActual"]
+                                if (isset($_SESSION["usuarioActual"])){
+                                    echo $_SESSION["usuarioActual"];
+                                };
                                 ?>
                             </a>
                         </li>
@@ -81,9 +83,10 @@
                                     <tbody>
                                         <?php
                                         $contador = 0;
+                                        if (isset($_SESSION["proyectos"])) {
                                         foreach ($_SESSION["proyectos"] as $proyecto) {
                                             echo "<tr>";
-                                            echo "<td>" . $proyecto['nombre'] . "</td>";
+                                            echo "<td><a class='text-decoration-none' href='controlador.php?action=ver&id=" . $contador . "'>" . $proyecto['nombre'] . "<a></td>";
                                             echo "<td>" . $proyecto['fechaInicio'] . "</td>";
                                             echo "<td>" . $proyecto['fechaFinPrevista'] . "</td>";
                                             echo "<td>" . $proyecto['diasTranscurridos'] . "</td>";
@@ -91,11 +94,14 @@
                                             echo "<td>" . $proyecto['importancia'] . "</td>";
                                             echo "<td> <div class='d-flex justify-content-center'>
                                             <a class='btn btn-primary btn-sm' role='button' 
-                                            href='controlador.php?action=eliminar&id='" . $contador . ">X</a>
+                                            href='controlador.php?action=eliminar&id=" . $contador . "'>X</a>
                                             </div></td>";
                                             echo "</tr>";
+                                            $contador += 1;
+                                            }
                                         }
-                                        $contador += 1;
+                                        
+                                        
                                         ?>
                                     </tbody>
                                 </table>

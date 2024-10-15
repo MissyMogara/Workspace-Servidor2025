@@ -17,16 +17,6 @@ function searchUser($email, $password){
 }
 
 /*
-Fuction that delete all projects from project array
-*/
-function deleteAllProjects(){
-    // We are traveling through all projects
-    foreach($_SESSION["proyectos"] as $proyecto) {
-        unset($proyecto); // Delete every project
-    }
-}
-
-/*
 Function that counter how many projects we have and return the id for the new project
 */
 function counterProjects(){

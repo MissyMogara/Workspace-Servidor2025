@@ -1,0 +1,16 @@
+.progress-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(#4caf50 calc(var(--porcentaje) * 1%), #4d4d4d 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+}
+
+.progress-circle span {
+    position: absolute;
+}

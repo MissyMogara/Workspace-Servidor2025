@@ -2,27 +2,6 @@
 
 include ("lib.php");
 
-$_SESSION["proyectos"] = array(
-    array(
-        "id" => 1,
-        "nombre" => "Desarrollo de Sitio Web",
-        "fechaInicio" => "2023-01-15",
-        "fechaFinPrevista" => "2023-06-15",
-        "diasTranscurridos" => 175,
-        "porcentajeCompletado" => 60,
-        "importancia" => 3
-    ),
-    array(
-        "id" => 2,
-        "nombre" => "Aplicación Móvil",
-        "fechaInicio" => "2023-02-10",
-        "fechaFinPrevista" => "2023-09-10",
-        "diasTranscurridos" => 145,
-        "porcentajeCompletado" => 40,
-        "importancia" => 5
-    )
-);
-
 //Create user array for users for the first time with an example user
 $_SESSION["usuarios"] = array(
     array(
@@ -34,6 +13,10 @@ $_SESSION["usuarios"] = array(
         "telefone" => "666777889"
     )
 );
+
+if(!isset($_SESSION["proyectos"])){
+    $_SESSION["proyectos"] = array();
+};
 
 //FORMS
 if($_POST){
@@ -62,7 +45,7 @@ if($_POST){
         $_SESSION["usuarioActual"] = $email;
         
 
-        //Check if user exists
+        // Check if user exists
         if(searchUser($email, $password) == 1){
             header("Location: proyectos.php");
             
@@ -71,18 +54,18 @@ if($_POST){
         }
         
     }
-    //Create new project
+    // Create new project
     if(isset($_POST["nuevo"])){
         
         //  Recive project information from form
         $registeredProject = [
-            $id = counterProjects() + 1,
-            $nombre = $_POST["project-name"],
-            $fechaInicio = $_POST["initial-date"],
-            $fechaFinPrevista = $_POST["finishig-date"],
-            $diasTranscurridos = $_POST["days-passed"],
-            $porcentajeCompletado = $_POST["percentage"],
-            $importancia = $_POST["importance"]
+            "id" => counterProjects() + 1,
+            "nombre" => $_POST["project-name"],
+            "fechaInicio" => $_POST["initial-date"],
+            "fechaFinPrevista" => $_POST["finishig-date"],
+            "diasTranscurridos" => $_POST["days-passed"],
+            "porcentajeCompletado" => $_POST["percentage"],
+            "importancia" => $_POST["importance"]
         ];
 
         // Put the project into the session
@@ -92,29 +75,36 @@ if($_POST){
     }
 }
 
-//Actions
+// Actions
 if(isset($_GET["action"])){
-    //Logout functionality
+    // Logout functionality
     if(strcmp($_GET["action"], "logout") == 0){
         session_destroy();
         header("Location: login.php");
     }
 
-    //Detele project functionality
+    // Detele project functionality
      if (strcmp($_GET['action'], "eliminar") == 0) {
         $id = $_GET['id'];
         unset($_SESSION['proyectos'][$id]);
         $_SESSION['proyectos'] = array_values($_SESSION['proyectos']);
-        header("Location: proyectos.php");
+        header("Location: proyectos.php?id=" . $id);
     }
     
-    //Detele all projects functionality
+    // Detele all projects functionality
     if (strcmp($_GET['action'], "eliminarTodo") == 0) {
-        deleteAllProjects();
+        $_SESSION["proyectos"] = array();
         header("Location: proyectos.php");
     }
 
-    
+    // View project functionality
+    if(strcmp($_GET["action"], "ver") == 0){
+        $_SESSION["proyectoActual"] = [];
+        $id = $_GET["id"];
+        $_SESSION["proyectoActual"] = $_SESSION["proyectos"][$id]; // Save current project in the session
+        header("Location: verProyecto.php");
+    }
+
 };
 
 
