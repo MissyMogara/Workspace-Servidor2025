@@ -2,7 +2,7 @@
 
 include ("lib.php");
 
-//Create user array for users for the first time with an example user
+// Create user array for users for the first time with an example user
 if (!isset($__SESSION["usuarios"])){
     $_SESSION["usuarios"] = array(
         array(
@@ -16,8 +16,9 @@ if (!isset($__SESSION["usuarios"])){
     );
 }
 
+// Example projects for testing without needing of create new projects
 if(!isset($_SESSION["proyectos"])){
-    $_SESSION["proyectos"] = array();
+    include("exampleProjects.php");
 };
 
 //FORMS
