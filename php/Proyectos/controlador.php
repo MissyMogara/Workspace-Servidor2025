@@ -3,16 +3,18 @@
 include ("lib.php");
 
 //Create user array for users for the first time with an example user
-$_SESSION["usuarios"] = array(
-    array(
-        "nombre" => "Miqota",
-        "apellidos" => "PurrPurr",
-        "password" => "1234567e",
-        "email" => "miqota@gmail.com",
-        "birthdate" => "1997-08-12",
-        "telefone" => "666777889"
-    )
-);
+if (!isset($__SESSION["usuarios"])){
+    $_SESSION["usuarios"] = array(
+        array(
+            "nombre" => "Miqota",
+            "apellidos" => "PurrPurr",
+            "password" => "1234567e",
+            "email" => "miqota@gmail.com",
+            "birthdate" => "1997-08-12",
+            "telefone" => "666777889"
+        )
+    );
+}
 
 if(!isset($_SESSION["proyectos"])){
     $_SESSION["proyectos"] = array();
