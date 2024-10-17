@@ -2,6 +2,9 @@
     width: 100px;
     height: 200px;
 }
+.mogImg{
+    height: 200px;
+}
 .deckContainer{
     display: flex;
     flex-wrap: wrap;

@@ -29,4 +29,37 @@ function drawCard($deck){
         };
     };
 }
+
+/*
+This function checks player's score and actualizes the actual score
+*/
+function checkScoreHand(){
+    $score = 0; // We'll save the total score here
+    foreach($_SESSION["cardsDisplayed"] as $card){
+        if (strcmp($card["nombre"], "A") == 0 || strcmp($card["nombre"], "J") == 0 || // Check if the card is A, J, Q or K 
+        strcmp($card["nombre"], "Q") == 0 || strcmp($card["nombre"], "K") == 0)  {
+            $score += 0.5;
+        } else {
+            $score += intval($card["nombre"]);
+        }
+    }
+    $_SESSION["actualScore"] = $score; // save the actual score
+}
+
+/*
+This function check game status, if you won, lose or continue
+*/
+function checkGameStatus($actualScore) {
+    if ($actualScore == 7.5) {
+        $_SESSION["gameStatus"] = "won"; // You won if you have 7.5 points
+        $_SESSION['wonMatches'] += 1;
+        $_SESSION['totalMatches'] += 1;
+    }
+    if ($actualScore > 7.5) {
+        $_SESSION["gameStatus"] = "lost"; // You lost if you have more than 7.5 points
+        $_SESSION['lostMatches'] += 1;
+        $_SESSION['totalMatches'] += 1;
+    }
+    
+}
 ?>
