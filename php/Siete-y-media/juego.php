@@ -15,7 +15,7 @@
     <!-- Primary container -->
     <div class="container">
         <h1>Las siete y media</h1>
-        <p>Haz click en el dorso de la carta para pedir más cartas:</p>
+        <p>Haz clic en el dorso de la carta para pedir más cartas:</p>
         <div class="deckContainer">
             <!-- List with all cards -->
 
