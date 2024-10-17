@@ -44,6 +44,15 @@
             
 
         </div>
+        <p><?php 
+            if(isset($_SESSION["gameStatus"])){
+                if(strcmp($_SESSION["gameStatus"], "won") == 0){
+                    echo "Has ganado!";
+                } else if(strcmp($_SESSION["gameStatus"], "lost") == 0){
+                    echo "Has perdido!";
+                }
+            }
+        ?></p>
         <p>Puntuación actual: <?php  
         if(isset($_SESSION["actualScore"])) { // Print score if exists
             echo $_SESSION["actualScore"];
