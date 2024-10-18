@@ -28,7 +28,7 @@
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Contraseña" 
-                                                name="password" pattern="^(?=.*[a-z]).{8,}$" required>
+                                                name="password" pattern="^(?=.*[A-Z]).{8,}$" required>
                                             <div id="passHelp" class="form-text small p-3">La contraseña ha de tener 8 caracteres y al menos una minuscula.</div>
                                         </div>
                                         
@@ -56,7 +56,6 @@
             </div>
 
         </div>
-
     </div>
 
     <!-- Bootstrap core JavaScript-->

@@ -5,6 +5,7 @@ This function searches for an existing user.
 */
 function searchUser($email, $password){
     foreach($_SESSION["usuarios"] as $usuario) {
+        
         // We use a string comparator to compare user email from session with user email provided
         if(strcmp($usuario["email"], $email) == 0){
             // Email exists

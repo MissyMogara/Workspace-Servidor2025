@@ -39,7 +39,7 @@
                                         <div class="form-group">
                                         <label for="" class="form-label">Contraseña:</label>
                                             <input type="password" class="form-control"
-                                            name="register-password" id="register-password" pattern="^(?=.*[a-z]).{8,}$" required>
+                                            name="register-password" id="register-password" pattern="^(?=.*[A-Z]).{8,}$" required>
                                             <div id="passHelp" class="form-text">La contraseña ha de tener 8 caracteres y al menos una minuscula.</div>
                                         </div>
                                         <!-- Email -->

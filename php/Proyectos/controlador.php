@@ -3,12 +3,12 @@
 include ("lib.php");
 
 // Create user array for users for the first time with an example user
-if (!isset($__SESSION["usuarios"])){
+if (!isset($_SESSION["usuarios"])){
     $_SESSION["usuarios"] = array(
         array(
             "nombre" => "Miqota",
             "apellidos" => "PurrPurr",
-            "password" => "1234567e",
+            "password" => "1234567E",
             "email" => "miqota@gmail.com",
             "birthdate" => "1997-08-12",
             "telefone" => "666777889"
@@ -45,11 +45,9 @@ if($_POST){
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $_SESSION["usuarioActual"] = $email;
-        
-
         // Check if user exists
         if(searchUser($email, $password) == 1){
+            $_SESSION["usuarioActual"] = $email;
             header("Location: proyectos.php");
             
         } else {

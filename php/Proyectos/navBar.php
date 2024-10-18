@@ -6,7 +6,7 @@
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-sun"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Dashboard Mónica</div>
+    <div class="sidebar-brand-text mx-3">Dashboard Admin</div>
 </a>
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
