@@ -34,12 +34,16 @@
                 };
                  
             };
-            if (strcmp($_SESSION["gameStatus"], "won") == 0) {
-                echo "<div><img src='./images/cool-emoji.png' class='mogImg'></div>";
-            }
-            if (strcmp($_SESSION["gameStatus"], "lost") == 0) {
+            if(isset($_SESSION["gameStatus"])){
+                if (strcmp($_SESSION["gameStatus"], "won") == 0) {
+                    echo "<div><img src='./images/cool-emoji.png' class='mogImg'></div>";
+                }
+            };
+            if(isset($_SESSION["gameStatus"])){
+                if (strcmp($_SESSION["gameStatus"], "lost") == 0) {
                 echo "<div><img src='./images/sad-emoji.png' class='mogImg'></div>";
-            }  
+                }
+            };
             ?>
             
 

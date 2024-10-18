@@ -40,21 +40,18 @@ if ($_GET) {
     if (isset($_GET['action'])) {
         // Draw card from deck
         if (strcmp($_GET['action'], "draw") == 0) {
-
-
-            if (
-                !strcmp($_SESSION["gameStatus"], "lost") == 0
-                && !strcmp($_SESSION["gameStatus"], "won") == 0
-            ) { // If game is lost you can't draw cards
-                drawCard($_SESSION["deck"]);
-                checkScoreHand();
-                checkGameStatus($_SESSION["actualScore"]); // Check game status
-            }
+            
+            if (!strcmp($_SESSION["gameStatus"], "lost") == 0 && !strcmp($_SESSION["gameStatus"], "won") == 0) { 
+            // If game is lost you can't draw cards
+            drawCard($_SESSION["deck"]);
+            checkScoreHand();
+            checkGameStatus($_SESSION["actualScore"]); // Check game status
+            }   
+            
             header("Location: juego.php");
         };
         // Reset the game
         if (strcmp($_GET['action'], "reset") == 0) {
-            //session_destroy();
             $_SESSION["cardsDisplayed"] = array();
             $_SESSION["actualScore"] = 0;
             $_SESSION["gameStatus"] = "none";
@@ -63,13 +60,6 @@ if ($_GET) {
         // Reset session if you want to check how it works in a new session
         if (strcmp($_GET['action'], "resetsessison") == 0) {
             session_destroy();
-            session_start();
-            $_SESSION["cardsDisplayed"] = array();
-            $_SESSION["actualScore"] = 0;
-            $_SESSION["gameStatus"] = "none";
-            $_SESSION['totalMatches'] = 0;
-            $_SESSION['wonMatches'] = 0;
-            $_SESSION['lostMatches'] = 0;
             header("Location: juego.php");
         };
     };
