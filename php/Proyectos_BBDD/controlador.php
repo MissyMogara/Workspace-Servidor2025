@@ -49,7 +49,7 @@ if($_POST){
             // Check password
             $data = consultHashRole($email);
             $passwordHash = $data['password'];
-            //echo password_hash($password,PASSWORD_BCRYPT);
+            
 
     
             if (password_verify($password, $passwordHash)){
