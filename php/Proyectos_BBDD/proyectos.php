@@ -1,5 +1,6 @@
 <?php include "cabecera.php" ?>
 <?php require "lib.php" ?>
+<?php $proyectos = getProjects(); ?>
 
 <body id="page-top">
 
@@ -82,22 +83,22 @@
                                     </tfoot>
                                     <tbody>
                                         <?php
-                                        $contador = 0;
-                                        if (isset($_SESSION["proyectos"])) {
-                                        foreach ($_SESSION["proyectos"] as $proyecto) {
+                                        
+                                        if (isset($proyectos)) {
+                                        foreach ($proyectos as $proyecto) {
                                             echo "<tr>";
-                                            echo "<td><a class='text-decoration-none' href='controlador.php?action=ver&id=" . $contador . "'>" . $proyecto['nombre'] . "<a></td>";
-                                            echo "<td>" . $proyecto['fechaInicio'] . "</td>";
-                                            echo "<td>" . $proyecto['fechaFinPrevista'] . "</td>";
-                                            echo "<td>" . $proyecto['diasTranscurridos'] . "</td>";
-                                            echo "<td>" . $proyecto['porcentajeCompletado'] . '%' . "</td>";
+                                            echo "<td><a class='text-decoration-none' href='controlador.php?action=ver&id=" . $proyecto["id"] . "'>" . $proyecto['nombre'] . "<a></td>";
+                                            echo "<td>" . $proyecto['fecha_inicio'] . "</td>";
+                                            echo "<td>" . $proyecto['fecha_fin'] . "</td>";
+                                            echo "<td>" . $proyecto['dias_transcurridos'] . "</td>";
+                                            echo "<td>" . $proyecto['porcentaje_completado'] . '%' . "</td>";
                                             echo "<td>" . $proyecto['importancia'] . "</td>";
                                             echo "<td> <div class='d-flex justify-content-center'>
                                             <a class='btn btn-primary btn-sm' role='button' 
-                                            href='controlador.php?action=eliminar&id=" . $contador . "'>X</a>
+                                            href='controlador.php?action=eliminar&id=" . $proyecto["id"] . "'>X</a>
                                             </div></td>";
                                             echo "</tr>";
-                                            $contador += 1;
+                                            
                                             }
                                         }
                                         

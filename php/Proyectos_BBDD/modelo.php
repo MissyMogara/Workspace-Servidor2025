@@ -7,7 +7,7 @@ function connectToDB() {
     // Put connection into session
     try {
         // host-> container mariadb's name and internal port between containers 
-        $dsn = "mysql:host=mariadb:3306;dbname=ejemplo";
+        $dsn = "mysql:host=mariadb:3306;dbname=ejemplo;charset=utf8mb4";
         $dbh = new PDO($dsn, "usuario", "usuario");
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e){
@@ -15,7 +15,7 @@ function connectToDB() {
     }
     return $dbh;  // Return the database connection object
 }
-
+/*---------- USERS ---------- */
 /**
  * Check if email exists
  */
@@ -82,6 +82,85 @@ function registerUser($email, $password, $nombre, $apellidos, $ciudad, $movil, $
     $stmt->bindParam(8, $rol);
     $stmt->execute(); // Execute the query
     
+    $dbh = null;
+
+}
+/*---------- PROJECTS ---------- */
+/**
+ * Register project into database
+ */
+function registerProject($nombre, $fechaInicio, $fechaFinPrevista, $diasTranscurridos, $porcentajeCompletado, $importancia){
+    
+    $dbh = connectToDB();
+
+    $stmt = $dbh->prepare("INSERT INTO proyectos (nombre, fecha_inicio, fecha_fin, dias_transcurridos, porcentaje_completado, importancia)
+    VALUES (?,?,?,?,?,?)");
+
+    $stmt->bindParam(1, $nombre);
+    $stmt->bindParam(2, $fechaInicio);
+    $stmt->bindParam(3, $fechaFinPrevista);
+    $stmt->bindParam(4, $diasTranscurridos);
+    $stmt->bindParam(5, $porcentajeCompletado);
+    $stmt->bindParam(6, $importancia);
+
+    $stmt->execute(); // Execute the query
+
+    $dbh = null;
+}
+/**
+ * Get the project by ID from database
+ */
+function getProject($id){
+    $dbh = connectToDB();
+
+    $stmt = $dbh->prepare("SELECT * FROM proyectos WHERE id = ?");
+
+    $stmt->bindParam(1, $id);
+
+    $stmt->execute(); // Execute the query
+    $proyecto = $stmt->fetch(PDO::FETCH_ASSOC); // Array
+
+    $dbh = null;
+    return $proyecto;
+}
+/**
+ * Get projects from the database
+ */
+function getProjects() {
+    $dbh = connectToDB();
+
+    $stmt = $dbh->prepare("SELECT * FROM proyectos");
+    $stmt->execute(); // Execute the query
+    $proyectos = $stmt->fetchAll(PDO::FETCH_ASSOC); // Array
+
+    $dbh = null;
+    return $proyectos;
+}
+/**
+ * Delete a project from the database
+ */
+function deleteProject($id){
+
+    $dbh = connectToDB();
+
+    $stmt = $dbh->prepare("DELETE FROM proyectos WHERE id =?");
+    $stmt->bindParam(1, $id);
+    $stmt->execute(); // Execute the query
+
+    $dbh = null;
+
+}
+
+/**
+ * Delete all projects from database
+ */
+function deleteAllProjects(){
+
+    $dbh = connectToDB();
+
+    $stmt = $dbh->prepare("DELETE FROM proyectos");
+    $stmt->execute(); // Execute the query
+
     $dbh = null;
 
 }

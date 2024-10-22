@@ -27,7 +27,9 @@
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 <?php
-                                echo $_SESSION["usuarioActual"]
+                                if (isset($_SESSION["usuario"])){
+                                    echo $_SESSION["usuario"]["email"];
+                                };
                                 ?>
                             </a>
                         </li>

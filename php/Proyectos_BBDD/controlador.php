@@ -74,18 +74,17 @@ if($_POST){
     if(isset($_POST["nuevo"])){
         
         //  Recive project information from form
-        $registeredProject = [
-            "id" => counterProjects() + 1,
-            "nombre" => $_POST["project-name"],
-            "fechaInicio" => $_POST["initial-date"],
-            "fechaFinPrevista" => $_POST["finishig-date"],
-            "diasTranscurridos" => $_POST["days-passed"],
-            "porcentajeCompletado" => $_POST["percentage"],
-            "importancia" => $_POST["importance"]
-        ];
+        
+        $nombre = $_POST["project-name"];
+        $fechaInicio = $_POST["initial-date"];
+        $fechaFinPrevista = $_POST["finishig-date"];
+        $diasTranscurridos = $_POST["days-passed"];
+        $porcentajeCompletado = $_POST["percentage"];
+        $importancia = $_POST["importance"];
+        
 
         // Put the project into the session
-        array_push($_SESSION["proyectos"], $registeredProject);
+        registerProject($nombre, $fechaInicio, $fechaFinPrevista, $diasTranscurridos, $porcentajeCompletado, $importancia);
         header("Location: proyectos.php");
 
     }
@@ -102,14 +101,13 @@ if(isset($_GET["action"])){
     // Detele project functionality
      if (strcmp($_GET['action'], "eliminar") == 0) {
         $id = $_GET['id'];
-        unset($_SESSION['proyectos'][$id]);
-        $_SESSION['proyectos'] = array_values($_SESSION['proyectos']);
-        header("Location: proyectos.php?id=" . $id);
+        deleteProject($id);
+        header("Location: proyectos.php");
     }
     
     // Detele all projects functionality
     if (strcmp($_GET['action'], "eliminarTodo") == 0) {
-        $_SESSION["proyectos"] = array();
+        deleteAllProjects();
         header("Location: proyectos.php");
     }
 
@@ -117,7 +115,7 @@ if(isset($_GET["action"])){
     if(strcmp($_GET["action"], "ver") == 0){
         $_SESSION["proyectoActual"] = [];
         $id = $_GET["id"];
-        $_SESSION["proyectoActual"] = $_SESSION["proyectos"][$id]; // Save current project in the session
+        $_SESSION["proyectoActual"] = getProject($id); // Save current project in the session
         header("Location: verProyecto.php");
     }
 

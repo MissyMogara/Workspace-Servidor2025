@@ -27,7 +27,9 @@
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 <?php
-                                echo $_SESSION["usuarioActual"]
+                                if (isset($_SESSION["usuario"])){
+                                    echo $_SESSION["usuario"]["email"];
+                                };
                                 ?>
                             </a>
                         </li>
@@ -55,8 +57,8 @@
                                 <!-- Circle -->
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <div class="progress-circle" id="circle" style="--porcentaje: <?php echo $_SESSION["proyectoActual"]["porcentajeCompletado"] ?> ">
-                                            <span class="text-light"><?php echo $_SESSION["proyectoActual"]["porcentajeCompletado"] ?>%</span>
+                                        <div class="progress-circle" id="circle" style="--porcentaje: <?php echo $_SESSION["proyectoActual"]["porcentaje_completado"] ?> ">
+                                            <span class="text-light"><?php echo $_SESSION["proyectoActual"]["porcentaje_completado"] ?>%</span>
                                         </div>
                                     </div>
                                     <div class="mt-4 text-center small">
@@ -74,8 +76,8 @@
                         <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $_SESSION["proyectoActual"]["nombre"] ?></h5>
-                            <p class="card-text"><?php echo $_SESSION["proyectoActual"]["fechaInicio"] ?> - <?php echo $_SESSION["proyectoActual"]["fechaFinPrevista"] ?></p>
-                            <p class="card-text"><small class="text-body-secondary">Han transcurrido <?php echo $_SESSION["proyectoActual"]["diasTranscurridos"] ?> días</small></p>
+                            <p class="card-text"><?php echo $_SESSION["proyectoActual"]["fecha_inicio"] ?> - <?php echo $_SESSION["proyectoActual"]["fecha_fin"] ?></p>
+                            <p class="card-text"><small class="text-body-secondary">Han transcurrido <?php echo $_SESSION["proyectoActual"]["dias_transcurridos"] ?> días</small></p>
                             <p class="card-text"><small class="text-body-secondary"><strong>Nivel de importancia:</strong> <?php echo $_SESSION["proyectoActual"]["importancia"] ?></small></p>
                         </div>
                         </div>
