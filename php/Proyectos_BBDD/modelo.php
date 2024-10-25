@@ -89,19 +89,21 @@ function registerUser($email, $password, $nombre, $apellidos, $ciudad, $movil, $
 /**
  * Register project into database
  */
-function registerProject($nombre, $fechaInicio, $fechaFinPrevista, $diasTranscurridos, $porcentajeCompletado, $importancia){
+function registerProject($nombre, $fechaInicio, $fechaFinPrevista, $diasTranscurridos, $porcentajeCompletado, $importancia, $id_usuario){
     
     $dbh = connectToDB();
 
-    $stmt = $dbh->prepare("INSERT INTO proyectos (nombre, fecha_inicio, fecha_fin, dias_transcurridos, porcentaje_completado, importancia)
-    VALUES (?,?,?,?,?,?)");
+    $stmt = $dbh->prepare("INSERT INTO proyectos (nombre, fecha_inicio, fecha_fin, dias_transcurridos, porcentaje_completado, importancia, id_usuario)
+    VALUES (?,?,?,?,?,?,?)");
 
+    
     $stmt->bindParam(1, $nombre);
     $stmt->bindParam(2, $fechaInicio);
     $stmt->bindParam(3, $fechaFinPrevista);
     $stmt->bindParam(4, $diasTranscurridos);
     $stmt->bindParam(5, $porcentajeCompletado);
     $stmt->bindParam(6, $importancia);
+    $stmt->bindParam(7, $id_usuario);
 
     $stmt->execute(); // Execute the query
 
@@ -126,10 +128,11 @@ function getProject($id){
 /**
  * Get projects from the database
  */
-function getProjects() {
+function getProjects($user_id) {
     $dbh = connectToDB();
 
-    $stmt = $dbh->prepare("SELECT * FROM proyectos");
+    $stmt = $dbh->prepare("SELECT * FROM proyectos WHERE id_usuario = ?");
+    $stmt->bindParam(1, $user_id);
     $stmt->execute(); // Execute the query
     $proyectos = $stmt->fetchAll(PDO::FETCH_ASSOC); // Array
 
@@ -186,5 +189,20 @@ function modifyProject($nombre, $fechaInicio, $fechaFinPrevista, $diasTranscurri
     $stmt->execute(); // Execute the query
     
     $dbh = null;
+}
+/**
+ * Get user id
+ */
+function getUserId($email){
+    $dbh = connectToDB();
+
+    $stmt = $dbh->prepare("SELECT id FROM usuarios WHERE email = ?");
+    $stmt -> bindParam(1, $email);
+    $stmt -> execute(); // Execute the query
+
+    $user_id = $stmt -> fetchAll(PDO::FETCH_ASSOC); // Return an array
+
+    $dbh = null;
+    return $user_id[0]["id"]; // Return user id
 }
 ?>

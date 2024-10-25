@@ -1,6 +1,6 @@
 <?php include "cabecera.php" ?>
 <?php require "lib.php" ?>
-<?php $proyectos = getProjects(); ?>
+<?php $proyectos = getProjects($_SESSION["usuario"]["id"]); ?>
 
 <body id="page-top">
 

@@ -27,7 +27,7 @@ if($_POST){
                 registerUser($email, $password, $nombre, $apellidos, $city, $telefone, $birthdate);
 
                 // If successful put user into session
-                $_SESSION["usuario"] = array("email" => $email, "rol" => "user");
+                $_SESSION["usuario"] = array("email" => $email, "rol" => "user", "id" => getUserId($email));
                 header("Location: proyectos.php");
             }
         
@@ -50,10 +50,10 @@ if($_POST){
             if (password_verify($password, $passwordHash)){
                 // Verify role
                 if (strcmp($data["rol"], "admin") == 0) {
-                    $_SESSION["usuario"] = array("email" => $email, "rol" => "admin");
+                    $_SESSION["usuario"] = array("email" => $email, "rol" => "admin", "id" => getUserId($email));
                     header("Location: proyectos.php"); // Admin login
                 } else {
-                    $_SESSION["usuario"] = array("email" => $email, "rol" => "user");
+                    $_SESSION["usuario"] = array("email" => $email, "rol" => "user", "id" => getUserId($email));
                     header("Location: proyectos.php"); // User login
                 }
             } else {
@@ -76,10 +76,10 @@ if($_POST){
         $diasTranscurridos = $_POST["days-passed"];
         $porcentajeCompletado = $_POST["percentage"];
         $importancia = $_POST["importance"];
-        
+        $id_ususario = $_SESSION["usuario"]["id"];
 
         // Put the project into the database
-        registerProject($nombre, $fechaInicio, $fechaFinPrevista, $diasTranscurridos, $porcentajeCompletado, $importancia);
+        registerProject($nombre, $fechaInicio, $fechaFinPrevista, $diasTranscurridos, $porcentajeCompletado, $importancia, $id_ususario);
         header("Location: proyectos.php");
 
     }
