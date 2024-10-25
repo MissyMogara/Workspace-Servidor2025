@@ -67,7 +67,7 @@
                                             <th>Días transcurridos</th>
                                             <th>Porcentaje completado</th>
                                             <th>Importancia</th>
-                                            <th>Eliminar</th>
+                                            <th>Opciones</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -78,7 +78,7 @@
                                             <th>Días transcurridos</th>
                                             <th>Porcentaje completado</th>
                                             <th>Importancia</th>
-                                            <th>Eliminar</th>
+                                            <th>Opciones</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -93,9 +93,11 @@
                                             echo "<td>" . $proyecto['dias_transcurridos'] . "</td>";
                                             echo "<td>" . $proyecto['porcentaje_completado'] . '%' . "</td>";
                                             echo "<td>" . $proyecto['importancia'] . "</td>";
-                                            echo "<td> <div class='d-flex justify-content-center'>
+                                            echo "<td> <div class='d-flex justify-content-around'>
                                             <a class='btn btn-primary btn-sm' role='button' 
-                                            href='controlador.php?action=eliminar&id=" . $proyecto["id"] . "'>X</a>
+                                            href='controlador.php?action=modificar&id=" . $proyecto["id"] . "'><i class='fas fa-cog'></i></a>
+                                            <a class='btn btn-danger btn-sm' role='button' 
+                                            href='controlador.php?action=eliminar&id=" . $proyecto["id"] . "'><i class='fas fa-trash'></i></a>
                                             </div></td>";
                                             echo "</tr>";
                                             

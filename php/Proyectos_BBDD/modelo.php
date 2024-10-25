@@ -165,4 +165,26 @@ function deleteAllProjects(){
 
 }
 
+/**
+ * Modified project in database
+ */
+function modifyProject($nombre, $fechaInicio, $fechaFinPrevista, $diasTranscurridos, $porcentajeCompletado, $importancia, $id){
+
+    $dbh = connectToDB();
+
+    $stmt = $dbh->prepare("UPDATE proyectos SET nombre =?, fecha_inicio =?, fecha_fin =?, dias_transcurridos =?, 
+    porcentaje_completado =?, importancia =? WHERE id =?");
+
+    $stmt->bindParam(1, $nombre);
+    $stmt->bindParam(2, $fechaInicio);
+    $stmt->bindParam(3, $fechaFinPrevista);
+    $stmt->bindParam(4, $diasTranscurridos);
+    $stmt->bindParam(5, $porcentajeCompletado);
+    $stmt->bindParam(6, $importancia);
+    $stmt->bindParam(7, $id);
+
+    $stmt->execute(); // Execute the query
+    
+    $dbh = null;
+}
 ?>

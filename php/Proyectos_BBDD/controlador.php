@@ -4,11 +4,6 @@ include ("lib.php");
 include("modelo.php");
 
 
-// Example projects for testing without needing of create new projects
-if(!isset($_SESSION["proyectos"])){
-    include("exampleProjects.php");
-};
-
 //FORMS
 if($_POST){
 
@@ -83,10 +78,25 @@ if($_POST){
         $importancia = $_POST["importance"];
         
 
-        // Put the project into the session
+        // Put the project into the database
         registerProject($nombre, $fechaInicio, $fechaFinPrevista, $diasTranscurridos, $porcentajeCompletado, $importancia);
         header("Location: proyectos.php");
 
+    }
+    if(isset($_POST["modificarProyecto"])){
+        //  Recive project information from form
+        
+        $nombre = $_POST["project-name"];
+        $fechaInicio = $_POST["initial-date"];
+        $fechaFinPrevista = $_POST["finishig-date"];
+        $diasTranscurridos = $_POST["days-passed"];
+        $porcentajeCompletado = $_POST["percentage"];
+        $importancia = $_POST["importance"];
+        $id = $_POST["id"];
+
+
+        modifyProject($nombre, $fechaInicio, $fechaFinPrevista, $diasTranscurridos, $porcentajeCompletado, $importancia, $id);
+        header("Location: proyectos.php");
     }
 }
 
@@ -113,10 +123,18 @@ if(isset($_GET["action"])){
 
     // View project functionality
     if(strcmp($_GET["action"], "ver") == 0){
-        $_SESSION["proyectoActual"] = [];
+        
         $id = $_GET["id"];
-        $_SESSION["proyectoActual"] = getProject($id); // Save current project in the session
-        header("Location: verProyecto.php");
+        header("Location: verProyecto.php?id=" . $id);
+
+    }
+
+    // Edit project functionality
+    if(strcmp($_GET["action"], "modificar") == 0){
+        
+        $id = $_GET["id"];
+        header("Location: modProyecto.php?id=" . $id);
+
     }
 
 };
