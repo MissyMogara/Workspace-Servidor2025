@@ -157,11 +157,11 @@ function deleteProject($id){
 /**
  * Delete all projects from database
  */
-function deleteAllProjects(){
+function deleteAllProjects($user_id){
 
     $dbh = connectToDB();
-
-    $stmt = $dbh->prepare("DELETE FROM proyectos");
+    $stmt = $dbh->prepare("DELETE FROM proyectos WHERE id_usuario = ?");
+    $stmt -> bindParam(1, $user_id);
     $stmt->execute(); // Execute the query
 
     $dbh = null;

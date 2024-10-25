@@ -37,7 +37,7 @@
                 <!-- Link trigger modal -->
                 <a class="collapse-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus-circle"></i> Añadir</a>
                 <!-- End of trigger modal -->
-                <a class="collapse-item" href="controlador.php?action=eliminarTodo"><i class="fas fa-trash"></i> Eliminar todo</a>
+                <a class="collapse-item" href="controlador.php?action=eliminarTodo&id=<?php echo $_SESSION['usuario']['id'] ?>"><i class="fas fa-trash"></i> Eliminar todo</a>
             </div>
         </div>
     </li>

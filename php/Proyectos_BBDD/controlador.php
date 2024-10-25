@@ -117,7 +117,7 @@ if(isset($_GET["action"])){
     
     // Detele all projects functionality
     if (strcmp($_GET['action'], "eliminarTodo") == 0) {
-        deleteAllProjects();
+        deleteAllProjects($_GET["id"]);
         header("Location: proyectos.php");
     }
 
