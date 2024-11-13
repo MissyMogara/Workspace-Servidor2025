@@ -12,7 +12,7 @@ class ModeloUsuarios {
 
         $conexion = new ConexionBD();
 
-        // DB query to get all presents        
+        // DB query to get all users        
         $stmt = $conexion->getConnexion()->prepare("SELECT * FROM usuarios");
         $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Coworking\modelos\Usuario');
         $stmt->execute();

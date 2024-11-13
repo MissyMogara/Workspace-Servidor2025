@@ -4,6 +4,8 @@ namespace Coworking;
 use Coworking\controladores\ControladorUsuarios;
 use Coworking\modelos\Usuario;
 use Coworking\controladores\ControladorReservas;
+use Coworking\controladores\ControladorSalas;
+
 
 session_start();
 
@@ -30,7 +32,7 @@ if(isset($_REQUEST["action"])) {
     if(strcmp($_REQUEST["action"], "mostrarReservas") == 0) {
         // Coworking reservations
         
-        ControladorReservas::mostrarReservas();
+        ControladorSalas::mostrarSalas("");
     }
 
 // Forms
@@ -59,7 +61,7 @@ if(isset($_REQUEST["action"])) {
 } else {
     // Default page
     if(isset($_SESSION["coworking-user"])) {
-        ControladorReservas::mostrarReservas();
+        ControladorSalas::mostrarSalas("");
     } else {
         // Login form
         ControladorUsuarios::mostrarLogin("");
