@@ -34,9 +34,9 @@
             $usuario = ModeloUsuarios::getPassword($email);
 
             if (password_verify($password, $usuario->getPassword())) {
-                
-                $_SESSION['coworking-user'] = $usuario->getEmail();
+                $_SESSION['coworking-user'] = $email;
                 header("Location: index.php?accion=mostrarReservas");
+
             } else {
                 ControladorUsuarios::mostrarLogin("Error login.");
             }

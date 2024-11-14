@@ -35,6 +35,15 @@ if(isset($_REQUEST["action"])) {
         ControladorSalas::mostrarSalas("");
     }
 
+    if(strcmp($_REQUEST["action"], "destroySession") == 0) {
+        // Destroys the session
+        
+        session_destroy();
+        ControladorUsuarios::mostrarLogin("");
+    }
+
+    
+
 // Forms
 } else if($_POST != null) {
     
@@ -65,9 +74,6 @@ if(isset($_REQUEST["action"])) {
     } else {
         // Login form
         ControladorUsuarios::mostrarLogin("");
-        //echo $passwordHash = password_hash("123456789", PASSWORD_BCRYPT);
-        
-
     }
 }
 

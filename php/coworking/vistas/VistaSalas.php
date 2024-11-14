@@ -19,7 +19,7 @@ class VistaSalas {
         <!-- MAIN CONTENT -->
         
         <!-- TABLE -->
-        <table class="table mog-table">
+        <table class="table mog-table m-5">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -36,7 +36,7 @@ class VistaSalas {
                     <td><?php echo $sala->getNombre();?></td>
                     <td><?php echo $sala->getCapacidad();?></td>
                     <td><?php echo $sala->getUbicacion();?></td>
-                    <td>...</td>
+                    <td class="center-icons"><a href="#" class="icons"><img src="./vistas/assets/icons/ojo.png" alt="Icono de un ojo"></a></td>
                 </tr>
             <?php }?>
             </tbody>

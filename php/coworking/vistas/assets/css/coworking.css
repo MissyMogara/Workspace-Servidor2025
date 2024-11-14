@@ -1,0 +1,115 @@
+:root {
+    /* Dark Purple tc1*/
+    --principal-color: #260C1A;
+    --text-color1: #FFFFFF;
+    /* Eggplant tc1*/
+    --secondary-color: #432E36;
+    /* Liver tc1*/
+    --tertiary-color: #5F4842;
+    /* Rossy Brown tc2*/
+    --principal-bg: #AF8D86;
+    --text-color2: #000000;
+    /* Tea Rose tc2*/
+    --secondary-bg: #EDBFC6;
+
+}
+
+*{
+    box-sizing: border-box;
+}
+
+/* Header styles */
+header {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+header div {
+    display: flex;
+    width: 350px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+}
+
+header div a{
+    
+    background-color: var(--tertiary-color);
+    border-radius: 10px;
+    padding: 0.5em;
+    color: var(--text-color1);
+    
+}
+
+header div a:hover{
+    background-color: var(--secondary-color);
+    color: var(--text-color1);
+    text-decoration: none;
+}
+
+/* Aside styles */
+.aside-navbar {
+    min-height: 100vh; /* 100 view height */
+    width: 250px; /* Width */
+    background-color: var(--secondary-color); /* Background color */
+    color: var(--text-color1);
+    box-shadow: 10px 0 20px rgba(0, 0, 0, 0.2), 20px 0 30px rgba(0, 0, 0, 0.15);
+}
+.aside-navbar a {
+    color: var(--text-color1);
+}
+
+.aside-navbar a:hover{
+    background-color: var(--principal-color);
+    box-shadow: inset 0 10px 15px rgba(0, 0, 0, 0.15), inset 0 -10px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Background colors */
+.mog-bg-dp {
+    background-color: var(--principal-color);
+    color: var(--text-color1);
+    
+}
+
+/* Tables */
+
+.mog-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    text-align: center;
+}
+.mog-table th, td{
+    border: 2px solid;
+    border-color: var(--principal-bg);
+    
+}
+.mog-table th {
+    background-color: var(--tertiary-color);
+    color: var(--text-color1);
+}
+.mog-table td {
+    background-color: var(--secondary-bg);
+    color: var(--text-color2);
+    display: table-cell;
+    vertical-align: middle;
+} 
+
+/* Icons */
+
+.center-icons {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.icons {
+    background-color: var(--tertiary-color);
+    border-radius: 10px;
+    padding: 0.5em;
+}
+
+.icons:hover {
+    background-color: var(--secondary-color);
+}
+
+.icons img {
+    margin-bottom: 5px;
+}

@@ -9,7 +9,8 @@ class ControladorReservas {
      * Shows all reservations.
      */
     public static function mostrarReservas() {
-        VistaReservas::render();
+        // TODO: Implement logic to show all reservations.
+        // VistaReservas::render();
     }
 
 }
