@@ -9,9 +9,17 @@ class ControladorSalas {
      * Shows all available coworking spaces.
      */
     public static function mostrarSalas($salas) {
-        // TODO: Implement logic to show all available coworking spaces.
         $salas = ModeloSalas::getAll();
         VistaSalas::render($salas);
+    }
+
+    /**
+     * Insert rooms into session.
+     */
+    public static function cargarSalasSession() {
+
+        $_SESSION['datos_salas'] = ModeloSalas::getAllNames();
+
     }
 }
 

@@ -1,6 +1,6 @@
   <!-- Header con Bootstrap -->
   <header class="mog-bg-dp p-3">
-    <h1>Reservas Coworking</h1>
+    <h1>Reservas Coworking Mogara</h1>
     <div>
       <a href="#">
 

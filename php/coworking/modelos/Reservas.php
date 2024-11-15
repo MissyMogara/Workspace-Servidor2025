@@ -2,7 +2,7 @@
 
 namespace Coworking\modelos;
 
-class Reserva {
+class Reservas {
     // Properties of the reservation class
     private $id;
     private $id_usuario;

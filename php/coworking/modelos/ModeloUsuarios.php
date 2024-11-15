@@ -85,7 +85,7 @@ class ModeloUsuarios {
         $conexion = new ConexionBD();
 
         // DB query to get user's password   
-        $stmt = $conexion->getConnexion()->prepare("SELECT password FROM usuarios WHERE email = '$email'");
+        $stmt = $conexion->getConnexion()->prepare("SELECT id, password FROM usuarios WHERE email = '$email'");
         $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Coworking\modelos\Usuario');
         $stmt->execute();
         $password = $stmt->fetch();

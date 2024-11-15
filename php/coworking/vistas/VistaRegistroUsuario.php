@@ -19,35 +19,34 @@ class VistaRegistroUsuario
                             <div class="card shadow-2-strong" style="border-radius: 1rem;">
                                 <div class="card-body p-5 text-center">
 
-                                    <?php
-                                        if (strlen($error) > 0) {
-                                            echo "<p class='text-danger'>{$error}</p>";
-                                        }
-                                    ?>
-
                                     <h3 class="mb-5">Registro</h3>
 
                                     <form action="index.php" method="POST">
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <input type="text" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Nombre" name="nombre" />
+                                            <input type="text" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Nombre" name="nombre" required />
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <input type="text" id="typeNameX-2" class="form-control form-control-lg" placeholder="Apellidos" name="apellidos" />
+                                            <input type="text" id="typeNameX-2" class="form-control form-control-lg" placeholder="Apellidos" name="apellidos" required />
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <input type="email" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Email" name="email" />
+                                            <input type="email" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Email" name="email" required />
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <input type="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Contraseña" name="password" />
+                                            <input type="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Contraseña" name="password" required />
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <input type="tel" id="typeTelX-2" class="form-control form-control-lg" placeholder="Teléfono" name="telefono" />
+                                            <input type="tel" id="typeTelX-2" class="form-control form-control-lg" placeholder="Teléfono" name="telefono" required />
                                         </div>
                                         
+                                        <?php
+                                            if (strlen($error) > 0) {
+                                                echo "<p class='text-danger'>{$error}</p>";
+                                            }
+                                        ?>
 
                                         <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" type="submit" name="meterUsuarioBBDD">Registrarse</button>
 

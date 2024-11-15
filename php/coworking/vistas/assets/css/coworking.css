@@ -46,6 +46,16 @@ header div a:hover{
     text-decoration: none;
 }
 
+/* Body */
+
+.body-content {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5em;
+}
+
 /* Aside styles */
 .aside-navbar {
     min-height: 100vh; /* 100 view height */
@@ -112,4 +122,29 @@ header div a:hover{
 
 .icons img {
     margin-bottom: 5px;
+}
+
+/* Modals */
+
+.button-mog {
+    background-color: var(--secondary-color);
+    color: var(--text-color1);
+    border-radius: 5px;
+    border: none;
+}
+
+.button-mog:hover {
+    background-color: var(--principal-color);
+}
+
+.button-close-mog {
+    background-color: var(--principal-bg);
+    color: var(--text-color2);
+    border-radius: 5px;
+    border: none;
+}
+
+.button-close-mog:hover {
+    background-color: var(--tertiary-color);
+    color: var(--text-color1);
 }

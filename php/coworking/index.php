@@ -5,6 +5,7 @@ use Coworking\controladores\ControladorUsuarios;
 use Coworking\modelos\Usuario;
 use Coworking\controladores\ControladorReservas;
 use Coworking\controladores\ControladorSalas;
+use Coworking\modelos\Reservas;
 
 
 session_start();
@@ -30,7 +31,7 @@ if(isset($_REQUEST["action"])) {
     }
 
     if(strcmp($_REQUEST["action"], "mostrarReservas") == 0) {
-        // Coworking reservations
+        // Coworking rooms
         
         ControladorSalas::mostrarSalas("");
     }
@@ -42,7 +43,27 @@ if(isset($_REQUEST["action"])) {
         ControladorUsuarios::mostrarLogin("");
     }
 
+    if(strcmp($_REQUEST["action"], "verReservas") == 0) {
+        // Shows all reservations from a room
+        $id = $_REQUEST["id"];
+        $nombre_sala = $_REQUEST["nombre"];
+        ControladorReservas::mostrarReservas($id, $nombre_sala);
+    }
     
+    if(strcmp($_REQUEST["action"], "verReservasUsuario") == 0) {
+        // Shows user's reservations from a room
+        if(isset($_REQUEST["error"])){
+            ControladorReservas::mostrarReservasUsuario($_SESSION['coworking-user'], $_REQUEST["error"]);
+        } else {
+            ControladorReservas::mostrarReservasUsuario($_SESSION['coworking-user'], "");
+        }
+    }
+    
+    if(strcmp($_REQUEST["action"], "borrarReserva") == 0) {
+        // Deletes user's reservation
+        $id = $_REQUEST["id"]; // Reservation id
+        ControladorReservas::borrarReservaUsuario($id, "");
+    }
 
 // Forms
 } else if($_POST != null) {
@@ -65,6 +86,14 @@ if(isset($_REQUEST["action"])) {
     if(isset($_POST["logearse"])) {
         // Show reservations
         ControladorUsuarios::login($_POST['user-email'], $_POST['user-password']);
+        ControladorSalas::cargarSalasSession();
+    }
+
+    if(isset($_POST["realizarReserva"])) {
+        // Create reservation
+        $reserva = new Reservas(0, $_SESSION["id_usuario"], 
+        $_POST["id_sala"], $_POST["fecha_reserva"], $_POST["hora_inicio"], $_POST["hora_fin"], "confirmada");
+        ControladorReservas::crearReserva($reserva);
     }
 
 } else {

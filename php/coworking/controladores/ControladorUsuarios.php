@@ -34,6 +34,7 @@
             $usuario = ModeloUsuarios::getPassword($email);
 
             if (password_verify($password, $usuario->getPassword())) {
+                $_SESSION["id_usuario"] = $usuario->getId();
                 $_SESSION['coworking-user'] = $email;
                 header("Location: index.php?accion=mostrarReservas");
 
