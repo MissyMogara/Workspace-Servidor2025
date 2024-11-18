@@ -23,11 +23,11 @@ class VistaRegistroUsuario
 
                                     <form action="index.php" method="POST">
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <input type="text" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Nombre" name="nombre" required />
+                                            <input type="text" id="typeNameX-2" class="form-control form-control-lg" placeholder="Nombre" name="nombre" required />
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <input type="text" id="typeNameX-2" class="form-control form-control-lg" placeholder="Apellidos" name="apellidos" required />
+                                            <input type="text" id="typeSurNameX-2" class="form-control form-control-lg" placeholder="Apellidos" name="apellidos" required />
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
@@ -35,7 +35,9 @@ class VistaRegistroUsuario
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <input type="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Contraseña" name="password" required />
+                                            <input type="password" id="typePasswordX-2" class="form-control form-control-lg"pattern="^(?=.*[a-zA-Z]).{8,}$" 
+                                            title="La contraseña debe tener al menos 8 caracteres y contener al menos una letra." placeholder="Contraseña" name="password" required />
+                                            <p>La contraseña ha de tener al menos 8 caracteres y una letra.</p>
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
