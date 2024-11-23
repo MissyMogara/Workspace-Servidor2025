@@ -16,9 +16,6 @@ lookCard.className = 'cardDetails';
 
 let currentType = ""; // Save card type
 
-let totalPages = 0;
-
-
 let page = 1;
 
 // Initiation
@@ -29,7 +26,7 @@ async function inicio(type = "") {
 
     let url = `https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=50`;
     if (type !== "") {
-        url += `&q=types:${type}`;
+        url = `https://api.pokemontcg.io/v2/cards?&q=types:${type}`;
     }
 
     const response = await fetch(url);
