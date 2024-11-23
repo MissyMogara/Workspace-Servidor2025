@@ -1,7 +1,10 @@
 :root{
     --primary-color: #FF686B;
     --secondary-color: #FFA69E;
+    --primary2-color: #84DCC6;
+    --secondary2-color: #A5FFD6;
     --text-color: #FFFFFF;
+    --text2-color: #222222;
 }
 
 header {
@@ -59,5 +62,69 @@ nav ul li a:hover {
     width: 30%;
     margin-top: 15px;
     margin-bottom: 15px;
-    border: 2px solid black;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border-radius: 10px;
+    padding: 0.5em;
+}
+
+.buttonCard {
+    padding: 1em;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--primary2-color);
+    color: var(--text2-color);
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.card button:hover {
+    background-color: var(--secondary2-color);
+}
+
+.lateralButtons button:hover { 
+    background-color: var(--secondary2-color);
+}
+.bigCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin: 1em;
+    padding: 1em;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border-radius: 10px;
+}
+
+.bigCard button:hover {
+    background-color: var(--secondary2-color);
+}
+
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.cardDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lateralButtons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 1em;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 1em;
+    text-align: center;
 }
