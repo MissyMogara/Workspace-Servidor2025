@@ -14,6 +14,10 @@ let lookCard;    // Card detail
 lookCard = document.createElement('div');
 lookCard.className = 'cardDetails';
 
+let currentType = ""; // Save card type
+
+let totalPages = 0;
+
 
 let page = 1;
 
@@ -21,7 +25,7 @@ let page = 1;
 async function inicio(type = "") {
     
     cardGallery.innerHTML = "";
-
+    currentType = type;
 
     let url = `https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=50`;
     if (type !== "") {
@@ -30,7 +34,7 @@ async function inicio(type = "") {
 
     const response = await fetch(url);
     const json = await response.json();
-
+    
 
     createPrincipal(json);
 
@@ -102,6 +106,8 @@ async function verDetalle(id) {
 
     cardGallery.style.display = 'none'; // Hide galery
     lookCard.style.display = 'block'; // Show details
+    document.getElementById("leftButton").style.display = 'none';
+    document.getElementById("rightButton").style.display = 'none';
 
 }
 
@@ -115,6 +121,9 @@ async function showTypes() {
     const ul = document.getElementById('tipos');
 
     const all = document.createElement('a');
+    all.addEventListener("click", () =>{
+        inicio("");
+    });
     const alist = document.createElement('li');
     all.textContent = "Todos";
     alist.appendChild(all);
@@ -184,7 +193,9 @@ async function createPrincipal(json) {
     });
 
     let leftButton = document.createElement("button");
+    leftButton.id = "leftButton";
     let rightButton = document.createElement("button");
+    rightButton.id = "rightButton";
 
     leftButton.innerText = "Anterior";
     leftButton.className = "buttonCard";
@@ -207,7 +218,7 @@ async function createPrincipal(json) {
         leftButton.addEventListener('click', () => {
             page--;
             document.getElementById("principal").innerHTML = "";
-            inicio();
+            inicio(currentType);
         });
     }
 
@@ -221,7 +232,7 @@ async function createPrincipal(json) {
         rightButton.addEventListener('click', () => {
             page++;
             document.getElementById("principal").innerHTML = "";
-            inicio();
+            inicio(currentType);
         });
     }
 
