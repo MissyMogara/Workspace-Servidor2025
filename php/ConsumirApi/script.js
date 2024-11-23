@@ -3,25 +3,30 @@ window.onload = function () {
     showTypes();
 };
 
+
 let cardGallery; // Galery
+cardGallery = document.createElement('div');
+cardGallery.id = 'cardGallery';
+cardGallery.className = 'card-gallery';
+
+
 let lookCard;    // Card detail
+lookCard = document.createElement('div');
+lookCard.className = 'cardDetails';
+
 
 let page = 1;
 
 // Initiation
 async function inicio(type = "") {
-
-
-
-    document.getElementById('tipos').innerHTML = "";
+    
+    cardGallery.innerHTML = "";
 
 
     let url = `https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=50`;
     if (type !== "") {
         url += `&q=types:${type}`;
     }
-    console.log(url);
-    console.log(type);
 
     const response = await fetch(url);
     const json = await response.json();
@@ -45,8 +50,6 @@ async function verDetalle(id) {
 
     const card = document.createElement('div');
     card.className = 'bigCard';
-
-    const br = document.createElement('br');
 
     // Image
     const img = document.createElement('img');
@@ -127,7 +130,7 @@ async function showTypes() {
         a.textContent = tipo;
         a.className = "listaLink";
 
-        console.log(tipo);
+        
         a.addEventListener('click', () => {
             inicio(tipo);
         });
@@ -146,11 +149,9 @@ async function createPrincipal(json) {
 
 
     // 250 Pokemon cards
+    document.getElementById("principal").innerHTML = "";
 
-
-    cardGallery = document.createElement('div');
-    cardGallery.id = 'cardGallery';
-    cardGallery.className = 'card-gallery';
+    
 
 
 
@@ -231,8 +232,7 @@ async function createPrincipal(json) {
     document.getElementById("principal").appendChild(buttons);
 
 
-    lookCard = document.createElement('div');
-    lookCard.className = 'cardDetails';
+    
     lookCard.style.display = 'none'; // Hide at the start
     document.getElementById("principal").appendChild(lookCard);
 
