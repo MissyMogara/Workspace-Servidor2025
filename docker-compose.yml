@@ -1,4 +1,5 @@
 services:
+  
   # Nginx
   web:
     container_name: nginx
@@ -34,10 +35,9 @@ services:
         - ./mariadb:/var/lib/mysql
 
   #MongoDB
-  mongo:
-    container_name: mongo
+  mongodb:
+    container_name: mongodb
     image: mongo:latest
-    restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: toor
