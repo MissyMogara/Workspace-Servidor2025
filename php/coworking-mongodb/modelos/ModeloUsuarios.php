@@ -11,19 +11,24 @@ class ModeloUsuarios {
     public static function getAll(){
 
         $conexion = new ConexionBD();
+        $baseDatos = $conexion->getBaseDatos();
+        $colection = $baseDatos->usuarios;
+        $usuarios = $colection->find();
+
+        $usuarios_arr = iterator_to_array($usuarios);
 
         // DB query to get all users        
-        $stmt = $conexion->getConnexion()->prepare("SELECT * FROM usuarios");
-        $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Coworking\modelos\Usuario');
-        $stmt->execute();
-        $usuarios = $stmt->fetchAll();
+        // $stmt = $conexion->getConnexion()->prepare("SELECT * FROM usuarios");
+        // $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Coworking\modelos\Usuario');
+        // $stmt->execute();
+        // $usuarios = $stmt->fetchAll();
 
         $conexion->cerrarConexion();
 
-        return $usuarios;
+        return $usuarios_arr;
 
     }
-
+    // VOY POR AQUI
     /**
      * Insert an user into the database
      */

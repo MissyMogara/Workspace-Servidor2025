@@ -11,10 +11,11 @@ class Reservas {
     private $hora_inicio;
     private $hora_fin;
     private $estado;
+    private $email_usuario;
 
     // Construct
     public function __construct($id = "", $id_usuario = "", $id_sala = "", $fecha_reserva = "", $hora_inicio = "", 
-    $hora_fin = "", $estado = "") {
+    $hora_fin = "", $estado = "", $email_usuario = "") {
         // Assigning the properties of the reservation class to the given parameters
         $this->id = $id;
         $this->id_usuario = $id_usuario;
@@ -23,6 +24,7 @@ class Reservas {
         $this->hora_inicio = $hora_inicio;
         $this->hora_fin = $hora_fin;
         $this->estado = $estado;
+        $this->email_usuario = $email_usuario;
     }
 
     // Getters and setters for the properties of the reservation class
@@ -164,6 +166,26 @@ class Reservas {
     public function setEstado($estado)
     {
         $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email_usuario
+     */ 
+    public function getEmail_usuario()
+    {
+        return $this->email_usuario;
+    }
+
+    /**
+     * Set the value of email_usuario
+     *
+     * @return  self
+     */ 
+    public function setEmail_usuario($email_usuario)
+    {
+        $this->email_usuario = $email_usuario;
 
         return $this;
     }
