@@ -31,11 +31,11 @@ class VistaSalas {
             <tbody>
             <?php foreach ($salas as $sala) {?>
                 <tr>
-                    <td><?php echo $sala->getId();?></td>
+                    <td><?php echo $sala->get_id();?></td>
                     <td><?php echo $sala->getNombre();?></td>
                     <td><?php echo $sala->getCapacidad();?></td>
                     <td><?php echo $sala->getUbicacion();?></td>
-                    <td class="center-icons"><a href="index.php?action=verReservas&id=<?php echo $sala->getId(); ?>&nombre=<?php echo $sala->getNombre();?>" class="icons"><img src="./vistas/assets/icons/ojo.png" alt="Icono de un ojo"></a></td>
+                    <td class="center-icons"><a href="index.php?action=verReservas&id=<?php echo $sala->get_id(); ?>&nombre=<?php echo $sala->getNombre();?>" class="icons"><img src="./vistas/assets/icons/ojo.png" alt="Icono de un ojo"></a></td>
                 </tr>
             <?php }?>
             </tbody>

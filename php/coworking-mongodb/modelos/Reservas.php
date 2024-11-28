@@ -4,7 +4,7 @@ namespace Coworking\modelos;
 
 class Reservas {
     // Properties of the reservation class
-    private $id;
+    private $_id;
     private $id_usuario;
     private $id_sala;
     private $fecha_reserva;
@@ -14,10 +14,10 @@ class Reservas {
     private $email_usuario;
 
     // Construct
-    public function __construct($id = "", $id_usuario = "", $id_sala = "", $fecha_reserva = "", $hora_inicio = "", 
+    public function __construct($_id = "", $id_usuario = "", $id_sala = "", $fecha_reserva = "", $hora_inicio = "", 
     $hora_fin = "", $estado = "", $email_usuario = "") {
         // Assigning the properties of the reservation class to the given parameters
-        $this->id = $id;
+        $this->_id = $_id;
         $this->id_usuario = $id_usuario;
         $this->id_sala = $id_sala;
         $this->fecha_reserva = $fecha_reserva;
@@ -186,6 +186,26 @@ class Reservas {
     public function setEmail_usuario($email_usuario)
     {
         $this->email_usuario = $email_usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _id
+     */ 
+    public function get_id()
+    {
+        return $this->_id;
+    }
+
+    /**
+     * Set the value of _id
+     *
+     * @return  self
+     */ 
+    public function set_id($_id)
+    {
+        $this->_id = $_id;
 
         return $this;
     }

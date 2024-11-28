@@ -54,7 +54,7 @@ class VistaReservas
                                 <td><?php echo $reserva->getHora_inicio(); ?></td>
                                 <td><?php echo $reserva->getHora_fin(); ?></td>
                                 <?php if ($nombre_sala == ""){ // If room's name is none then we are on user's reservations
-                                    echo "<td class='center-icons'><a href='index.php?action=borrarReserva&id=" . $reserva->getId() . "' class='icons'><img src='./vistas/assets/icons/basura.png' alt='Icono de una papelera'></a></td>"; // Add delete option only for user's reservations
+                                    echo "<td class='center-icons'><a href='index.php?action=borrarReserva&id=" . $reserva->get_id() . "' class='icons'><img src='./vistas/assets/icons/basura.png' alt='Icono de una papelera'></a></td>"; // Add delete option only for user's reservations
                                 } ?>
                             </tr>
                         <?php } ?>

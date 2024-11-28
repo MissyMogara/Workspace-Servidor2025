@@ -4,7 +4,7 @@ namespace Coworking\modelos;
 
 class Usuario {
     // Properties of the user class
-    private $id;
+    private $_id;
     private $nombre;
     private $apellidos;
     private $email;
@@ -13,9 +13,9 @@ class Usuario {
     private $fecha_creacion;
 
     // Constructor of the user class
-    public function __construct($id="", $nombre="", $apellidos="", $email="", $password="", $telefono="", $fecha_creacion="") {
+    public function __construct($_id="", $nombre="", $apellidos="", $email="", $password="", $telefono="", $fecha_creacion="") {
         // Assigning the properties of the user class to the given parameters
-        $this->id = $id;
+        $this->_id = $_id;
         $this->nombre = $nombre;
         $this->apellidos = $apellidos;
         $this->email = $email;
@@ -162,6 +162,26 @@ class Usuario {
     public function setFecha_creacion($fecha_creacion)
     {
         $this->fecha_creacion = $fecha_creacion;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _id
+     */ 
+    public function get_id()
+    {
+        return $this->_id;
+    }
+
+    /**
+     * Set the value of _id
+     *
+     * @return  self
+     */ 
+    public function set_id($_id)
+    {
+        $this->_id = $_id;
 
         return $this;
     }

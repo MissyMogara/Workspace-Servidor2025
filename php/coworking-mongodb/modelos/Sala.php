@@ -4,14 +4,14 @@ namespace Coworking\modelos;
 
 class Sala {
     // Properties of the room class
-    private $id;
+    private $_id;
     private $nombre;
     private $capacidad;
     private $ubicacion;
 
     // Constructor of the room class
-    public function __construct($id="", $nombre="", $capacidad="", $ubicacion="") {
-        $this->id = $id;
+    public function __construct($_id="", $nombre="", $capacidad="", $ubicacion="") {
+        $this->_id = $_id;
         $this->nombre = $nombre;
         $this->capacidad = $capacidad;
         $this->ubicacion = $ubicacion;
@@ -96,6 +96,26 @@ class Sala {
     public function setUbicacion($ubicacion)
     {
         $this->ubicacion = $ubicacion;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _id
+     */ 
+    public function get_id()
+    {
+        return $this->_id;
+    }
+
+    /**
+     * Set the value of _id
+     *
+     * @return  self
+     */ 
+    public function set_id($_id)
+    {
+        $this->_id = $_id;
 
         return $this;
     }
