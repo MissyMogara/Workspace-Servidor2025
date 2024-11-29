@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace Coworking\modelos;
+
 
 use MongoDB\Client; // Importar el cliente de MongoDB
 use MongoDB\Exception\Exception;
@@ -11,7 +11,7 @@ require './vendor/autoload.php';
 class ConexionBD {
 
     private $conexion;
-    private $baseDatos;
+    
 
 
     public function __construct() {
@@ -21,9 +21,9 @@ class ConexionBD {
         try {
             if ($this->conexion == null) {
                 // Crear la conexión al cliente de MongoDB
-                $this->conexion = new Client($host);
+                $this->conexion = (new Client($host))->coworking;
                 // Seleccionar la base de datos
-                $this->baseDatos = $this->conexion->selectDatabase("coworking");
+                
             }
         } catch (\Exception $e) {
             echo "Error al conectar con MongoDB: " . $e->getMessage();
@@ -34,17 +34,10 @@ class ConexionBD {
     /**
      * Getter conexion
      */
-    public function getConnexion() {
+    public function getConexion() {
 
         return $this->conexion;
 
-    }
-
-    /**
-     * Getter para la base de datos seleccionada
-     */
-    public function getBaseDatos() {
-        return $this->baseDatos;
     }
 
     /**
@@ -53,10 +46,22 @@ class ConexionBD {
     public function cerrarConexion() {
         
         $this->conexion = null;
-        $this->baseDatos = null;
         
     }
 
 }
+
+$conexionObj = new ConexionBD();
+$conexion = $conexionObj->getConexion();
+
+$collection = $conexion->salas;
+$salas = $collection->find();
+
+foreach ($salas as $sala) {
+    echo "ID: ". $sala["_id"]. ", Nombre: ". $sala["nombre"]. ", Capacidad: ". $sala["capacidad"]. "<br>";
+}
+
+
+
 
 ?>

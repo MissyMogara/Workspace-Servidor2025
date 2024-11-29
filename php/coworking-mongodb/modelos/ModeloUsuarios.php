@@ -28,12 +28,12 @@ class ModeloUsuarios {
         return $usuarios_arr;
 
     }
-    // VOY POR AQUI
+
     /**
      * Insert an user into the database
      */
     public static function meterUsuarioDB($usuario) {
-
+        // HAY UN ERROR AQUÍ AL INICIAR SESISON
         $conexion = new ConexionBD();
         $baseDatos = $conexion->getBaseDatos();
         $colection = $baseDatos->usuarios;
