@@ -2,8 +2,9 @@
 
 namespace Coworking\modelos;
 
+require 'vendor/autoload.php';
+
 use Coworking\modelos\Reservas;
-use \PDO;
 
 class ModeloReservas {
 
@@ -17,15 +18,18 @@ class ModeloReservas {
         $conexion = new ConexionBD();
         $baseDatos = $conexion->getBaseDatos();
         $colection = $baseDatos->reservas;
+
+        // DB query to get all reservations
         $reservas = $colection->find(["id_sala" => $id]);
 
-        // DB query to get all reservations        
-        // $stmt = $conexion->getConnexion()->prepare("SELECT * FROM reservas WHERE id_sala = ? ORDER BY reservas.fecha_reserva ASC");
-        // $stmt->bindParam(1, $id);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Coworking\modelos\Reservas');
-        // $stmt->execute();
-        // $reservas = $stmt->fetchAll();
-        $reservas_arr = iterator_to_array($reservas);
+        
+        $reservas_arr = [];
+
+        foreach ($reservas as $reserva) {
+            $reservaObj = new Reservas($reserva["_id"],$reserva["id_reserva"], $reserva["id_usuario"], $reserva["id_sala"], 
+            $reserva["fecha_reserva"], $reserva["hora_inicio"], $reserva["hora_fin"], $reserva["estado"], $reserva["email_usuario"]);
+            array_push($reservas_arr, $reservaObj);
+        }
         
 
         $conexion->cerrarConexion();
@@ -42,23 +46,19 @@ class ModeloReservas {
         $conexion = new ConexionBD();
         $baseDatos = $conexion->getBaseDatos();
         $colection = $baseDatos->reservas;
-        $reservas = $colection->find(["email_usuario" => $email, "estado" => "confirmada"])->sort(["fecha_reserva" => 1]);
 
         // DB query to get user's reservations  
-        // $stmt = $conexion->getConnexion()->prepare("SELECT reservas.id, reservas.id_usuario, reservas.id_sala, reservas.fecha_reserva,
-        // reservas.hora_inicio, reservas.hora_fin, reservas.estado
-        //  FROM reservas 
-        //  JOIN usuarios ON usuarios.id = reservas.id_usuario
-        //  WHERE usuarios.email = ? AND reservas.estado != 'cancelada'
-        //  ORDER BY reservas.fecha_reserva ASC, reservas.hora_inicio ASC");
-        // $stmt->bindParam(1, $email);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Coworking\modelos\Reservas');
-        // $stmt->execute();
-        // $reservas = $stmt->fetchAll();
+        $reservas = $colection->find(["email_usuario" => $email, "estado" => "confirmada"], ['sort' => ['fecha' => 1]]);
+
+        $reservas_arr = [];
+
+        foreach ($reservas as $reserva) {
+            $reservaObj = new Reservas($reserva["_id"], $reserva["id_reserva"], $reserva["id_usuario"], $reserva["id_sala"], 
+            $reserva["fecha_reserva"], $reserva["hora_inicio"], $reserva["hora_fin"], $reserva["estado"], $reserva["email_usuario"]);
+            array_push($reservas_arr, $reservaObj);
+        }
 
         $conexion->cerrarConexion();
-
-        $reservas_arr = iterator_to_array($reservas);
 
         return $reservas_arr;
     }
@@ -72,12 +72,10 @@ class ModeloReservas {
         $conexion = new ConexionBD();
         $baseDatos = $conexion->getBaseDatos();
         $colection = $baseDatos->reservas;
-        $reserva = $colection->updateOne(["id" => $id_reserva], ['$set' => ["estado" => "cancelada"]]);
+
 
         // DB query to delete a reservation
-        // $stmt = $conexion->getConnexion()->prepare("UPDATE reservas SET estado='cancelada' WHERE id = ?");
-        // $stmt->bindParam(1, $id_reserva);
-        // $stmt->execute();
+        $colection->updateOne(["id_reserva" => $id_reserva], ['$set' => ["estado" => "cancelada"]]);
 
         $conexion->cerrarConexion();
 
@@ -92,7 +90,7 @@ class ModeloReservas {
         $baseDatos = $conexion->getBaseDatos();
         $colection = $baseDatos->reservas;
         $reservas = [
-            [
+                "id_reserva" => uniqid(),
                 "id_usuario" => $reserva->getId_usuario(),
                 "id_sala" => $reserva->getId_sala(),
                 "fecha_reserva" => $reserva->getFecha_reserva(),
@@ -100,19 +98,10 @@ class ModeloReservas {
                 "hora_fin" => $reserva->getHora_fin(),
                 "estado" => $reserva->getEstado(), 
                 "email_usuario" => $reserva->getEmail_usuario()
-            ]
         ];
 
         $colection->insertOne($reservas);
-        // $stmt = $conexion->getConnexion()->prepare("INSERT INTO reservas (id_usuario, id_sala, 
-        // fecha_reserva, hora_inicio, hora_fin, estado) VALUES (?,?,?,?,?,?)");
-        // $stmt->bindValue(1, $reserva->getId_usuario());
-        // $stmt->bindValue(2, $reserva->getId_sala());
-        // $stmt->bindValue(3, $reserva->getFecha_reserva());
-        // $stmt->bindValue(4, $reserva->getHora_inicio());
-        // $stmt->bindValue(5, $reserva->getHora_fin());
-        // $stmt->bindValue(6, $reserva->getEstado());
-        // $stmt->execute();
+
         $conexion->cerrarConexion();
 
     }
@@ -129,28 +118,28 @@ class ModeloReservas {
             "estado" => "confirmada",
             '$or' => [
                 [
-                    // Primera condición: hora_inicio de la nueva reserva está dentro del rango de otra
+                    // First condition: the start_time of the new reservation is within the range of another.
                     '$and' => [
                         ["hora_inicio" => ['$lt' => $reserva->getHora_fin() . ":00"]],
                         ["hora_fin" => ['$gt' => $reserva->getHora_inicio() . ":00"]]
                     ]
                 ],
                 [
-                    // Segunda condición: hora_fin de la nueva reserva está dentro del rango de otra
+                    // Second condition: the end_time of the new reservation is within the range of another.
                     '$and' => [
                         ["hora_inicio" => ['$lt' => $reserva->getHora_fin() . ":00"]],
                         ["hora_fin" => ['$gt' => $reserva->getHora_inicio() . ":00"]]
                     ]
                 ],
                 [
-                    // Tercera condición: otra reserva comienza dentro del rango de la nueva reserva
+                    // Third condition: another reservation starts within the range of the new reservation.
                     '$and' => [
                         ["hora_inicio" => ['$gt' => $reserva->getHora_inicio() . ":00"]],
                         ["hora_inicio" => ['$lt' => $reserva->getHora_fin() . ":00"]]
                     ]
                 ],
                 [
-                    // Cuarta condición: otra reserva termina dentro del rango de la nueva reserva
+                    // Fourth condition: another reservation ends within the range of the new reservation.
                     '$and' => [
                         ["hora_fin" => ['$gt' => $reserva->getHora_inicio() . ":00"]],
                         ["hora_fin" => ['$lt' => $reserva->getHora_fin() . ":00"]]
@@ -159,42 +148,14 @@ class ModeloReservas {
             ]
         ];
 
-        $resultados = $colection->find($filtro);
-
-        // $stmt = $conexion->getConnexion()->prepare("
-        //     SELECT * 
-        //     FROM reservas 
-        //     WHERE id_sala = ? 
-        //     AND fecha_reserva = ? 
-        //     AND estado = 'confirmada' 
-        //     AND (
-        //         (? > hora_inicio AND ? < hora_fin) 
-        //         OR (? > hora_inicio AND ? < hora_fin) 
-        //         OR (hora_inicio > ? AND hora_inicio < ?) 
-        //         OR (hora_fin > ? AND hora_fin < ?)
-        //     )
-        // ");
-
-        // $stmt->bindValue(1, $reserva->getId_sala()); 
-        // $stmt->bindValue(2, $reserva->getFecha_reserva()); 
-        // $stmt->bindValue(3, $reserva->getHora_inicio() . ":00"); 
-        // $stmt->bindValue(4, $reserva->getHora_fin() . ":00"); 
-        // $stmt->bindValue(5, $reserva->getHora_inicio() . ":00"); 
-        // $stmt->bindValue(6, $reserva->getHora_fin() . ":00"); 
-        // $stmt->bindValue(7, $reserva->getHora_inicio() . ":00"); 
-        // $stmt->bindValue(8, $reserva->getHora_fin() . ":00"); 
-        // $stmt->bindValue(9, $reserva->getHora_inicio() . ":00"); 
-        // $stmt->bindValue(10, $reserva->getHora_fin() . ":00");
         
 
-        // $stmt->execute();
-
-        // $resultados = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Coworking\modelos\Reservas');
+        $resultadosN = $colection->countDocuments($filtro);
 
         $conexion->cerrarConexion();
         
         // Return false if not repeated and true if repeated
-        if (empty($resultados)) {    
+        if ($resultadosN == 0) {    
             return false;
         } else {
             return true;

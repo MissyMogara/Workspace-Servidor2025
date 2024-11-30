@@ -19,14 +19,20 @@ class ModeloSalas {
         $salas = $colection->find();
 
         // DB query to get all rooms        
-        // $stmt = $conexion->getConnexion()->prepare("SELECT * FROM salas");
-        // $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Coworking\modelos\Sala');
-        // $stmt->execute();
-        // $salas = $stmt->fetchAll();
+        $salas_arr = [];
+        foreach ($salas as $sala) {
+            $salaObj = new Sala($sala["_id"], $sala["nombre"], $sala["capacidad"], $sala["ubicacion"], $sala["id"]);
+            array_unshift($salas_arr, $salaObj);
+        }
+
+        // Sorting by ID in ascending order
+        usort($salas_arr, function($a, $b) {
+            return $a->getId() <=> $b->getId();
+        });
 
         $conexion->cerrarConexion();
 
-        $salas_arr = iterator_to_array($salas);
+        
 
         return $salas_arr;
     }
@@ -40,22 +46,19 @@ class ModeloSalas {
         $baseDatos = $conexion->getBaseDatos();
         $colection = $baseDatos->salas;
 
+        // DB query to get all rooms 
+        $salas = $colection->find(); 
+        
+        $names_arr = [];
 
-        $filtro = []; // Filter of what attributes we want
-        $proyector = [ '_id' => 1,'nombre' => 1, "capacidad" => 0, "ubicacion" => 0];
-        $names = $colection->find($filtro, ['projection' => $proyector]); // Only names and ids.
-
-
-        // // DB query to get all rooms        
-        // $stmt = $conexion->getConnexion()->prepare("SELECT id, nombre FROM salas");
-        // $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Coworking\modelos\Sala');
-        // $stmt->execute();
-        // $salas = $stmt->fetchAll();
-
+        foreach ($salas as $sala) {
+            $nameObj = new Sala($sala["_id"], $sala["nombre"], "", "", $sala["id"]); // Only names and ids.
+            array_unshift($names_arr, $nameObj);
+        }
+        
         $conexion->cerrarConexion();
 
-        $names_arr = iterator_to_array($names);
-
+        
         return $names_arr;
     }
     

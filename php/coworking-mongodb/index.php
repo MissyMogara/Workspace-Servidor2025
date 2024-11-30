@@ -8,6 +8,7 @@ use Coworking\controladores\ControladorSalas;
 use Coworking\modelos\Reservas;
 
 
+
 session_start();
 
 
@@ -91,8 +92,10 @@ if(isset($_REQUEST["action"])) {
 
     if(isset($_POST["realizarReserva"])) {
         // Create reservation
-        $reserva = new Reservas(0, $_SESSION["id_usuario"], 
-        $_POST["id_sala"], $_POST["fecha_reserva"], $_POST["hora_inicio"], $_POST["hora_fin"], "confirmada");
+        $reserva = new Reservas(0, 0, $_SESSION["id_usuario"], 
+        $_POST["id_sala"], $_POST["fecha_reserva"], $_POST["hora_inicio"], $_POST["hora_fin"], 
+        "confirmada", $_SESSION["coworking-user"]);
+
         ControladorReservas::crearReserva($reserva);
     }
 

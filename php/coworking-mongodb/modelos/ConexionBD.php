@@ -2,9 +2,8 @@
 
 namespace Coworking\modelos;
 
-use MongoDB\Client; // Importar el cliente de MongoDB
+use MongoDB\Client;
 use MongoDB\Exception\Exception;
-
 
 require './vendor/autoload.php';
 
@@ -20,9 +19,9 @@ class ConexionBD {
 
         try {
             if ($this->conexion == null) {
-                // Crear la conexión al cliente de MongoDB
+                // Create client
                 $this->conexion = new Client($host);
-                // Seleccionar la base de datos
+                // Select database
                 $this->baseDatos = $this->conexion->selectDatabase("coworking");
             }
         } catch (\Exception $e) {

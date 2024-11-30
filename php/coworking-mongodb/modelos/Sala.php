@@ -8,37 +8,18 @@ class Sala {
     private $nombre;
     private $capacidad;
     private $ubicacion;
+    private $id;
 
     // Constructor of the room class
-    public function __construct($_id="", $nombre="", $capacidad="", $ubicacion="") {
+    public function __construct($_id="", $nombre="", $capacidad="", $ubicacion="", $id = "") {
         $this->_id = $_id;
         $this->nombre = $nombre;
         $this->capacidad = $capacidad;
         $this->ubicacion = $ubicacion;
+        $this->id = $id;
     }
 
     // Getters and setters for the properties of the room class
-    
-
-    /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get the value of nombre
@@ -116,6 +97,26 @@ class Sala {
     public function set_id($_id)
     {
         $this->_id = $_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }

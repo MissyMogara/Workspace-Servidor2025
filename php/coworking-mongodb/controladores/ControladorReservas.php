@@ -52,14 +52,14 @@ class ControladorReservas
         if ($reserva->getHora_inicio() >= $reserva->getHora_fin()) {
             header("Location: index.php?action=verReservasUsuario&error='Hora incorrecta, la hora de inicio no puede ser menor a la de finalización.'");
         } else {
-
+            
             if (ModeloReservas::checkIfRepeated($reserva) == false) {
 
                 ModeloReservas::insertReservation($reserva);
                 header("Location: index.php?action=verReservasUsuario&error=");
 
             } else {
-                
+
                 header("Location: index.php?action=verReservasUsuario&error='La fecha no es correcta, ya hay reservas para esa hora.'");
             
             }
