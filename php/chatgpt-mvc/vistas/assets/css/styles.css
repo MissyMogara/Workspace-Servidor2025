@@ -3,12 +3,14 @@
     --carolina-blue: #86BBD8;
     --black-text: #000000;
     --white-text: #FFFFFF;
+    --orange-patone: #f26419;
 }
+
+/* ALL */
 
 header {
     background-color: var(--lapiz-lazuli);
     color: var(--white-text);
-    padding: 20px;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
@@ -16,9 +18,52 @@ header {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
+header h1 {
+    margin-top: 0;
+    padding-top: 20px;
+}
+
 body {
     margin: 0 auto;
+    height: 100vh;
 }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+ul li {
+    padding: 1.5em;
+}
+
+a {
+    color: var(--white-text);
+    text-decoration: none;
+    padding: 1.5em;
+}
+
+a:visited {
+    color: var(--white-text);
+}
+
+a:hover {
+    background-color: var(--carolina-blue);
+}
+
+footer {
+    background-color: var(--lapiz-lazuli);
+    color: var(--white-text);
+    padding: 4em;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* NEWS */
 
 #columna_noticias {
     display: flex;
@@ -29,7 +74,7 @@ body {
 
 .noticia {
     background-color: var(--carolina-blue);
-    color: var(--white-text);
+    color: var(--black-text);
     padding: 20px;
     margin: 10px;
     border-radius: 10px;
@@ -37,5 +82,78 @@ body {
     text-align: left;
     font-size: 18px;
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
+
+/* LOGIN */
+
+#login_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 400px;
+    margin: 0 auto;
+    background-color: var(--white-text);
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+#login_title{
+    width: 100%;
+    background-color: var(--lapiz-lazuli);
+    color: var(--white-text);
+    padding: 2em;
+}
+
+#login_title h1 {
+    margin: 0;
+}
+
+#content_login_container{
+    width: 100%;
+    height: 100%;
+    
+}
+
+#content_login_container form{
+    padding: 2em;
+}
+
+#content_login_container form input{
+    margin-bottom: 1em;
+    padding: 1.5em;
+    border-radius: 5px;
+    width: 87%;
+    
+    border: 1px solid var(--lapiz-lazuli);
+}
+
+#content_login_container form button {
+    padding: 1.5em 2em;
+    color: var(--white-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.reset-btn {
+    background-color: var(--orange-patone);
+}
+
+.reset-btn:hover {
+    background-color: #a74611;
+}
+
+.submit-btn {
+    background-color: var(--lapiz-lazuli);
+}
+
+.submit-btn:hover {
+    background-color: #23455f;
+}
+

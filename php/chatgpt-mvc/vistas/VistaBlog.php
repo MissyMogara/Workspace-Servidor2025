@@ -11,11 +11,16 @@ class VistaBlog {
 <body>
     <div id="columna_noticias">
         <div class="noticia">
-            <img src="" alt="">
             <h2>Título de la noticia 1</h2>
+            <img src="./vistas/assets/images/orange-cat-breed.jpg" alt="Gato naranja">
             <p>Contenido de la noticia 1</p>
         </div>
     </div>
+
+    <?php 
+    include_once "footer.php";
+    ?>
+    
 </body>
 </html>
 

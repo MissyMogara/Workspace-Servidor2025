@@ -3,6 +3,7 @@
 namespace Chatgpt;
 
 use Chatgpt\controladores\ControladorNoticias;
+use Chatgpt\controladores\ControladorAdmin;
 
 session_start();
 
@@ -19,6 +20,11 @@ spl_autoload_register(function ($class){
 // ROUTER
 // Buttons/Links
 if(isset($_REQUEST["action"])) {
+
+    if(strcmp($_REQUEST["action"], "loginAdmin") == 0) {
+        // Show login form
+        ControladorAdmin::MostrarLogin("");
+    }
 
 // Forms
 } else if($_POST != null) {
