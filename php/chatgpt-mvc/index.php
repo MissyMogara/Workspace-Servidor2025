@@ -26,8 +26,30 @@ if(isset($_REQUEST["action"])) {
         ControladorAdmin::MostrarLogin("");
     }
 
+    if(strcmp($_REQUEST["action"], "errorLogin") == 0) {
+        // Show error login form
+        ControladorAdmin::MostrarLogin("El email o la contraseña son incorrectos.");
+    }
+
+    if(strcmp($_REQUEST["action"], "mostrarDashboard") == 0) {
+        // Show dashboard
+        ControladorAdmin::MostrarDashboard($_SESSION["admin-user"]);
+    }
+    
+    if(strcmp($_REQUEST["action"], "logout") == 0) {
+        // Logout admin
+        ControladorAdmin::CerrarSesion();
+    }
+
 // Forms
 } else if($_POST != null) {
+
+    if(isset($_POST["loggear"])) {
+        // Login admin
+        ControladorAdmin::IniciarSesion($_POST["email"], $_POST["password"]);
+        //echo password_hash("1234567a", PASSWORD_BCRYPT);
+        
+    }
 
 } else {
     // Default page
