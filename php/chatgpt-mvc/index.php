@@ -51,6 +51,23 @@ if(isset($_REQUEST["action"])) {
         
     }
 
+    if(isset($_POST["image"])) {
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (isset($data["url"])) {
+            $imageUrl = $data["url"];
+
+            $imageData = file_get_contents($imageUrl);
+
+            if ($imageData !== false) {
+                $filePath = "./vistas/assets/images" . basename($imageUrl);
+                file_put_contents($filePath, $imageData);
+            }
+        }
+
+    }
+
 } else {
     // Default page
     ControladorNoticias::MostrarNoticias("");
