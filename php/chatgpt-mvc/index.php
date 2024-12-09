@@ -53,11 +53,8 @@ if (isset($_REQUEST["action"])) {
                 // Generate a unique ID
                 $id = uniqid();
 
-                // Get the original file extension
-                $extension = pathinfo($imageUrl, PATHINFO_EXTENSION);
-
                 // Create the new file name
-                $newFileName = $id . '.' . $extension;
+                $newFileName = $id . '.' . "png";
 
                 // Define the path where the image will be saved
                 $filePath = "./public/downloads/images/" . $newFileName;
@@ -69,6 +66,9 @@ if (isset($_REQUEST["action"])) {
                         "message" => "Imagen descargada exitosamente",
                         "path" => $filePath
                     ]);
+
+                    ControladorNoticias::UpdateNoticia($id);
+
                 } else {
                     echo json_encode([
                         "status" => "error",
@@ -98,23 +98,10 @@ if (isset($_REQUEST["action"])) {
 
     }
 
-
-    // if(isset($_POST["image"])) {
-    //     // Download image
-    //     $data = json_decode(file_get_contents("php://input"), true);
-
-    //     if (isset($data["url"])) {
-    //         $imageUrl = $data["url"];
-
-    //         $imageData = file_get_contents($imageUrl);
-
-    //         if ($imageData !== false) {
-    //             $filePath = "./public/downloads/images" . basename($imageUrl);
-    //             file_put_contents($filePath, $imageData);
-    //         }
-    //     }
-
-    // }
+    if (isset($_POST["newsData"])) {
+        // Save news data
+        ControladorNoticias::GuardarNoticia($_POST["title"], $_POST["textArea"]);
+    }
 
 } else {
     // Default page

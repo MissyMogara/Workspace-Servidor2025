@@ -4,6 +4,9 @@ window.onload = inicio;
 async function inicio() {
 
     if(document.getElementById("previsualizar")){
+
+        document.getElementById('guardar').addEventListener('click', saveData);
+
         document.getElementById("previsualizar").addEventListener("click", async function() {
 
             const textArea = document.getElementById("textArea");
@@ -13,29 +16,66 @@ async function inicio() {
             const urlAI = await generateImage(textArea.value);
     
             preview(textoAI, urlAI, textArea.value);
-    
+
         });
     }
     
 }
 
+// This function calls the API to generate an image
 async function preview(text, image, title) {
 
     const container = document.getElementById('previsualizacion');
 
     const containerTitle = document.createElement('h2');
     containerTitle.textContent = title;
+    containerTitle.id = "title";
     
     const containerImage = document.createElement('img');
     containerImage.src = image;
+    containerImage.id = "image";
 
     const containerText = document.createElement('p');
     containerText.textContent = text;
+    containerText.id = "text";
 
     container.innerHTML = '';
     container.appendChild(containerTitle);
     container.appendChild(containerImage);
     container.appendChild(containerText);
+
+}
+
+ async function saveData() {
+    // Save text and image in php via GET
+    const title = document.getElementById('title').textContent;
+    const textArea = document.getElementById("text").textContent;
+    const image = document.getElementById("image").src;
+
+    const url = "index.php";
+
+    // Data
+    // Create object FormData
+    const datos = new FormData();
+    datos.append("newsData", true);
+    datos.append("title", title); // Title
+    datos.append("textArea", textArea); // Text content
+
+    try {
+        // POST
+        const respuesta = await fetch(url, {
+            method: "POST",
+            body: datos
+        });
+
+        // Response
+        const resultado = await respuesta.text();
+        console.log("Respuesta del servidor:", resultado);
+    } catch (error) {
+        console.error("Error al enviar los datos:", error);
+    }
+
+    sendUrlToLocalServer(image);
 
 }
 
@@ -85,7 +125,7 @@ async function generateImage(prompt) {
     const response = await fetch("./api-key/api_key.txt");
     const key = await response.text();
 
-    console.log("Clave obtenida:", key); // Verifica la clave obtenida
+    console.log("Clave obtenida:", key); // Check key
 
 
     const promptAI = `Generame una imagen para un blog que con el título ${prompt}`;
@@ -119,45 +159,26 @@ async function generateImage(prompt) {
 
 // This function sends the generated image to a local server
 async function sendUrlToLocalServer(url) {
-    // try {
-    //     const response = await fetch("index.php", {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             url: url,
-    //             action: "image"
-    //         })
-    //     });
-
-    //     const data = await response.json();
-    //     console.log("URL enviada al servidor: ", data.message);
-
-    // } catch (e) {
-    //     console.log("Error al enviar la URL al servidor: " + e.message);
-    // };
     try {
-        // Construimos la URL con los parámetros de consulta
+        // Params
         const params = new URLSearchParams({
             url: url,
             action: "image",
         });
 
-        // Hacemos la solicitud GET con los parámetros en la URL
+        // Get
         const response = await fetch(`index.php?${params.toString()}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json', // Opcional en GET, pero puedes incluirlo
+                'Content-Type': 'application/json', // Optional
             },
         });
 
-        // Verificamos que la respuesta sea exitosa
+        // Check if response was successful
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        // Obtenemos y procesamos la respuesta
         const data = await response.json();
         console.log("URL enviada al servidor: ", data.message);
 

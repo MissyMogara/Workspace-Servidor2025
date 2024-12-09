@@ -26,7 +26,7 @@ class VistaAdmin {
                     <div id="previsualizacion">                                    
                         
                     </div>
-                    <button type="button" class="submit-btn btn">Guardar</button>
+                    <button type="button" class="submit-btn btn" id="guardar">Guardar</button>
                     <button type="button" class="reset-btn btn">Cancelar</button>
                 </form>
             </div>
