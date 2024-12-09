@@ -1,15 +1,43 @@
-import OpenAI from "openai";
-
 window.onload = inicio;
-
-// Initialize the key
-async function inicio() {
-
-const openai = new OpenAI();
 
 const key = (await fetch("./api-key/api_key.txt")).text();
 
 console.log(key);
+
+// Initialize the key
+async function inicio() {
+
+    document.getElementById("previsualizar").addEventListener("click", function() {
+
+        const textArea = document.getElementById("textArea");
+
+        const textoAI = generateText(textArea.value);
+
+        const urlAI = generateImage(textArea.value);
+
+        preview(textoAI, urlAI, textArea.value);
+
+    });
+
+}
+
+async function preview(text, image, title) {
+
+    const container = document.getElementById('previsualizacion');
+
+    const containerTitle = document.createElement('h2');
+    containerTitle.textContent = title;
+    
+    const containerImage = document.createElement('img');
+    containerImage.src = image;
+
+    const containerText = document.createElement('p');
+    containerText.textContent = text;
+
+    container.innerHTML = '';
+    container.appendChild(containerTitle);
+    container.appendChild(containerImage);
+    container.appendChild(containerText);
 
 }
 
@@ -22,8 +50,8 @@ async function generateText(prompt) {
     const datos = {
         model: "gpt-4o-mini",
         messages: [
-            { role: "system", content: "Eres un generador de contenido profesional para blogs. Escribes artículos informativos, bien estructurados y atractivos sobre temas de actualidad. Las noticias deben ser claras, precisas y atractivas, con títulos llamativos y un tono profesional. Siempre proporciona información relevante y evita incluir datos incorrectos o inventados."},
-            { role: "user", content: `generame un texto no muy largo para un blog con el titulo ${prompt}`}
+            { role: "system", content: "Eres un generador de contenido profesional para blogs. Escribes artículos informativos, bien estructurados y atractivos sobre temas de actualidad. Las noticias deben ser claras, precisas y atractivas, con títulos llamativos y un tono profesional. Siempre proporciona información relevante y evita incluir datos incorrectos o inventados." },
+            { role: "user", content: `generame un texto no muy largo para un blog con el titulo ${prompt}` }
         ],
         temperature: 0.7,
     }
@@ -49,6 +77,8 @@ async function generateText(prompt) {
 
 // This function calls the API to generate an image
 async function generateImage(prompt) {
+
+    const promptAI = `Generame una imagen para un blog que con el título ${prompt}`;
 
     const url = "https://api.openai.com/v1/images/generations";
 
@@ -79,24 +109,49 @@ async function generateImage(prompt) {
 
 // This function sends the generated image to a local server
 async function sendUrlToLocalServer(url) {
+    // try {
+    //     const response = await fetch("index.php", {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             url: url,
+    //             action: "image"
+    //         })
+    //     });
 
+    //     const data = await response.json();
+    //     console.log("URL enviada al servidor: ", data.message);
+
+    // } catch (e) {
+    //     console.log("Error al enviar la URL al servidor: " + e.message);
+    // };
     try {
-        const response = await fetch(`index.php`,{
-            method: 'POST',
-            hedaers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                url: url,
-                action: image
-            })
+        // Construimos la URL con los parámetros de consulta
+        const params = new URLSearchParams({
+            url: url,
+            action: "image",
         });
 
+        // Hacemos la solicitud GET con los parámetros en la URL
+        const response = await fetch(`index.php?${params.toString()}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json', // Opcional en GET, pero puedes incluirlo
+            },
+        });
+
+        // Verificamos que la respuesta sea exitosa
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // Obtenemos y procesamos la respuesta
         const data = await response.json();
         console.log("URL enviada al servidor: ", data.message);
 
     } catch (e) {
         console.log("Error al enviar la URL al servidor: " + e.message);
-    };
-
+    }
 }

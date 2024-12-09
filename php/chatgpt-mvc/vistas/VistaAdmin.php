@@ -16,17 +16,15 @@ class VistaAdmin {
                         Ingresa el texto de entrada para generar la noticia:
                     </label>
                     <br>
-                    <textarea name="prompt" id="" cols="50" rows="2">
+                    <textarea id="textArea" name="prompt" id="" cols="50" rows="2">
 
                     </textarea>
                     <br>
-                    <button type="button" class="submit-btn btn">Previsualizar</button>
+                    <button type="button" class="submit-btn btn" id="previsualizar">Previsualizar</button>
                     <h2 class="center-text">Previsualización</h2>
                     <hr>
                     <div id="previsualizacion">                                    
-                        <h2>Título de la noticia 1</h2>
-                        <img src="./vistas/assets/images/orange-cat-breed.jpg" alt="Gato naranja">
-                        <p>Contenido de la noticia 1</p>
+                        
                     </div>
                     <button type="button" class="submit-btn btn">Guardar</button>
                     <button type="button" class="reset-btn btn">Cancelar</button>
