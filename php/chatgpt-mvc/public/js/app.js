@@ -1,24 +1,22 @@
 window.onload = inicio;
 
-const key = (await fetch("./api-key/api_key.txt")).text();
-
-console.log(key);
-
 // Initialize the key
 async function inicio() {
 
-    document.getElementById("previsualizar").addEventListener("click", function() {
+    if(document.getElementById("previsualizar")){
+        document.getElementById("previsualizar").addEventListener("click", async function() {
 
-        const textArea = document.getElementById("textArea");
-
-        const textoAI = generateText(textArea.value);
-
-        const urlAI = generateImage(textArea.value);
-
-        preview(textoAI, urlAI, textArea.value);
-
-    });
-
+            const textArea = document.getElementById("textArea");
+    
+            const textoAI = await generateText(textArea.value);
+    
+            const urlAI = await generateImage(textArea.value);
+    
+            preview(textoAI, urlAI, textArea.value);
+    
+        });
+    }
+    
 }
 
 async function preview(text, image, title) {
@@ -44,6 +42,12 @@ async function preview(text, image, title) {
 
 // This function calls the API to generate text
 async function generateText(prompt) {
+
+    const response = await fetch("./api-key/api_key.txt");
+    const key = await response.text();
+
+    console.log("Clave obtenida:", key); // Verifica la clave obtenida
+
 
     const url = "https://api.openai.com/v1/chat/completions";
 
@@ -77,6 +81,12 @@ async function generateText(prompt) {
 
 // This function calls the API to generate an image
 async function generateImage(prompt) {
+
+    const response = await fetch("./api-key/api_key.txt");
+    const key = await response.text();
+
+    console.log("Clave obtenida:", key); // Verifica la clave obtenida
+
 
     const promptAI = `Generame una imagen para un blog que con el título ${prompt}`;
 
