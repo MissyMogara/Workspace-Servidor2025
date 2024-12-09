@@ -3,6 +3,27 @@
 namespace Chatgpt\modelos;
 
 class ModeloNoticias {
+
+    public static function getNoticias() {
+
+        $conexion = new ConexionBD();
+        $baseDatos = $conexion->getBaseDatos();
+        $collection = $baseDatos->noticias;
+
+        $noticias = $collection->find();
+
+        $noticias_arr = [];
+
+        foreach ($noticias as $noticia) {
+            $objNoticia = new Noticia(0 , $noticia["id"], $noticia["title"], $noticia["content"], $noticia["date"]);
+            array_push($noticias_arr, $objNoticia);
+        }
+
+        return $noticias_arr;
+
+        $conexion->cerrarConexion();
+
+    }
     
     public static function InsertNoticia($title, $content) {
 
@@ -12,10 +33,13 @@ class ModeloNoticias {
 
         $number = $collection->countDocuments();
 
+        $currentDate = date('Y-m-d H:i:s');
+
         $noticia = [
             "id" => $number + 1,
             "title" => $title,
-            "content" => $content
+            "content" => $content,
+            "date" => $currentDate
         ];
 
         $collection->insertOne($noticia);

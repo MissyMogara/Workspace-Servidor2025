@@ -3,7 +3,7 @@
 namespace Chatgpt\vistas;
 
 class VistaBlog {
-    public static function render() {
+    public static function render($noticias) {
         include_once "head.php";
         include_once "header.php";
 ?>

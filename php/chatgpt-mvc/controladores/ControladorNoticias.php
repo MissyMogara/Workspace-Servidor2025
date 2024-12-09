@@ -33,6 +33,10 @@ class ControladorNoticias {
 
         ModeloNoticias::CambiarNoticia($id);
 
+        $noticias = ModeloNoticias::getNoticias();
+
+        VistaBlog::render($noticias);
+
     }
 
 }

@@ -5,12 +5,14 @@ namespace Chatgpt\modelos;
 class Noticia {
 
     private $_id;
+    private $id;
     private $titulo;
     private $descripcion;
     private $imagen;
     // Constructor
-    public function __construct($_id="", $titulo="", $descripcion="", $imagen="") {
+    public function __construct($_id="", $id="", $titulo="", $descripcion="", $imagen="") {
         $this->_id = $_id;
+        $this->$id;
         $this->titulo = $titulo;
         $this->descripcion = $descripcion;
         $this->imagen = $imagen;
@@ -94,6 +96,26 @@ class Noticia {
     public function setImagen($imagen)
     {
         $this->imagen = $imagen;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }
