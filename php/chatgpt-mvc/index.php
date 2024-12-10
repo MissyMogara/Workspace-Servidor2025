@@ -46,6 +46,8 @@ if (isset($_REQUEST["action"])) {
         if (isset($_GET["url"])) {
             $imageUrl = $_GET["url"]; // Get the URL from the GET parameters
 
+            $imageUrl = urldecode($imageUrl);
+
             // Attempt to download the image from the provided URL
             $imageData = file_get_contents($imageUrl);
 

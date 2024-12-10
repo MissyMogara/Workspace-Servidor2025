@@ -176,9 +176,11 @@ async function generateImage(prompt) {
 // This function sends the generated image to a local server
 async function sendUrlToLocalServer(url) {
     try {
+        const encodedUrl = encodeURIComponent(url);
+
         // Params
         const params = new URLSearchParams({
-            url: url,
+            url: encodedUrl,
             action: "image",
         });
 
