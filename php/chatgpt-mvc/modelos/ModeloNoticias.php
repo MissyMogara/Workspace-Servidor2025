@@ -15,7 +15,7 @@ class ModeloNoticias {
         $noticias_arr = [];
 
         foreach ($noticias as $noticia) {
-            $objNoticia = new Noticia(0 , $noticia["id"], $noticia["title"], $noticia["content"], $noticia["date"]);
+            $objNoticia = new Noticia(0 , $noticia["id"], $noticia["title"], $noticia["content"], $noticia["date"], $noticia["image"]);
             array_push($noticias_arr, $objNoticia);
         }
 

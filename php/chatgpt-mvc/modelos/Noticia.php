@@ -8,13 +8,15 @@ class Noticia {
     private $id;
     private $titulo;
     private $descripcion;
+    private $fecha;
     private $imagen;
     // Constructor
-    public function __construct($_id="", $id="", $titulo="", $descripcion="", $imagen="") {
+    public function __construct($_id="", $id="", $titulo="", $descripcion="", $fecha="", $imagen="") {
         $this->_id = $_id;
-        $this->$id;
+        $this->id = $id;
         $this->titulo = $titulo;
         $this->descripcion = $descripcion;
+        $this->fecha = $fecha;
         $this->imagen = $imagen;
     }
 
@@ -116,6 +118,26 @@ class Noticia {
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fecha
+     */ 
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * Set the value of fecha
+     *
+     * @return  self
+     */ 
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
 
         return $this;
     }

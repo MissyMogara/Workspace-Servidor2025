@@ -9,6 +9,8 @@ async function inicio() {
 
         document.getElementById("previsualizar").addEventListener("click", async function() {
 
+            document.getElementById("previsualizar").disabled = true;
+
             const textArea = document.getElementById("textArea");
     
             const textoAI = await generateText(textArea.value);
@@ -18,6 +20,20 @@ async function inicio() {
             preview(textoAI, urlAI, textArea.value);
 
         });
+
+        document.getElementById("cancelar").addEventListener("click", function() {
+            const container = document.getElementById('previsualizacion');
+            container.innerHTML = '';
+            document.getElementById("previsualizar").disabled = false;
+            document.getElementById('message').textContent = "";
+        });
+
+        document.getElementById("volver").addEventListener("click", function() {
+            document.getElementById("previsualizar").disabled = false;
+            document.getElementById('message').textContent = "";
+            window.location.href = "index.php?action=logout";
+        });
+
     }
     
 }
@@ -173,6 +189,8 @@ async function sendUrlToLocalServer(url) {
                 'Content-Type': 'application/json', // Optional
             },
         });
+
+        document.getElementById('message').textContent = "Puedes pulsar el botón de volver para ver el resultado en el blog.";
 
         // Check if response was successful
         if (!response.ok) {

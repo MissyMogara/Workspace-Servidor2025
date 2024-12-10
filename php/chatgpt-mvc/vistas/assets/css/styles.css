@@ -70,6 +70,8 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 500px;
+    margin: 0 auto;
 }
 
 .noticia {
@@ -163,6 +165,20 @@ footer {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.btn-volver{
+    padding: 1.5em 6.5em;
+    margin-top: 0.5em;
+    color: var(--white-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; 
+    background-color: rgb(61, 198, 61);
+}
+
+.btn-volver:hover{
+    background-color: rgb(40, 125, 40);
 }
 
 .error {

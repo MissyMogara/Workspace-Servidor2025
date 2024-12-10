@@ -5,6 +5,7 @@ use Chatgpt\vistas\VistaBlog;
 use Chatgpt\modelos\ModeloNoticias;
 
 
+
 class ControladorNoticias {
 
     /**
@@ -13,7 +14,9 @@ class ControladorNoticias {
      */
     public static function MostrarNoticias($error) {
 
-        VistaBlog::render($error);
+        $noticias = ModeloNoticias::getNoticias();
+
+        VistaBlog::render($noticias);
 
     }
 
@@ -32,10 +35,6 @@ class ControladorNoticias {
     public static function UpdateNoticia($id) {
 
         ModeloNoticias::CambiarNoticia($id);
-
-        $noticias = ModeloNoticias::getNoticias();
-
-        VistaBlog::render($noticias);
 
     }
 

@@ -26,8 +26,11 @@ class VistaAdmin {
                     <div id="previsualizacion">                                    
                         
                     </div>
+                    <p id="message"></p>
                     <button type="button" class="submit-btn btn" id="guardar">Guardar</button>
-                    <button type="button" class="reset-btn btn">Cancelar</button>
+                    <button type="button" class="reset-btn btn" id="cancelar">Cancelar</button>
+                    <br>
+                    <button type="button" class="btn-volver" id="volver">Volver</button>
                 </form>
             </div>
         </body>
