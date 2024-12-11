@@ -3,56 +3,58 @@ window.onload = inicio;
 // Initialize the key
 async function inicio() {
 
-    if(document.getElementById("previsualizar")){
+    if (document.getElementById("previsualizar")) {
 
-        document.getElementById('guardar').addEventListener('click', saveData);
+        //document.getElementById('guardar').addEventListener('click', saveData);
 
-        document.getElementById("previsualizar").addEventListener("click", async function() {
+        document.getElementById("previsualizar").addEventListener("click", async function () {
 
             document.getElementById("previsualizar").disabled = true;
 
-            const textArea = document.getElementById("textArea");
-    
-            const textoAI = await generateText(textArea.value);
-    
-            const urlAI = await generateImage(textArea.value);
-    
-            preview(textoAI, urlAI, textArea.value);
+            const prompt = document.getElementById("textArea").value;
+
+            preview(prompt);
 
         });
 
-        document.getElementById("cancelar").addEventListener("click", function() {
+        document.getElementById("cancelar").addEventListener("click", function () {
             const container = document.getElementById('previsualizacion');
             container.innerHTML = '';
             document.getElementById("previsualizar").disabled = false;
             document.getElementById('message').textContent = "";
         });
 
-        document.getElementById("volver").addEventListener("click", function() {
+        document.getElementById("volver").addEventListener("click", function () {
             document.getElementById("previsualizar").disabled = false;
             document.getElementById('message').textContent = "";
             window.location.href = "index.php?action=logout";
         });
 
     }
-    
+
 }
 
 // This function calls the API to generate an image
-async function preview(text, image, title) {
+async function preview(prompt) {
+    console.log("generando... " + prompt);
+    const data = await fetchContentFromPHP(prompt);
+
+    console.log(data);
+    console.log(data.image);
+    console.log(data.text);
 
     const container = document.getElementById('previsualizacion');
 
     const containerTitle = document.createElement('h2');
-    containerTitle.textContent = title;
+    containerTitle.textContent = prompt;
     containerTitle.id = "title";
-    
+
     const containerImage = document.createElement('img');
-    containerImage.src = image;
+    containerImage.src = data.image;
     containerImage.id = "image";
 
     const containerText = document.createElement('p');
-    containerText.textContent = text;
+    containerText.textContent = data.text;
     containerText.id = "text";
 
     container.innerHTML = '';
@@ -62,40 +64,55 @@ async function preview(text, image, title) {
 
 }
 
- async function saveData() {
-    // Save text and image in php via GET
-    const title = document.getElementById('title').textContent;
-    const textArea = document.getElementById("text").textContent;
-    const image = document.getElementById("image").src;
-
-    const url = "index.php";
-
-    // Data
-    // Create object FormData
-    const datos = new FormData();
-    datos.append("newsData", true);
-    datos.append("title", title); // Title
-    datos.append("textArea", textArea); // Text content
+async function fetchContentFromPHP(prompt) {
 
     try {
-        // POST
-        const respuesta = await fetch(url, {
-            method: "POST",
-            body: datos
+        const params = new URLSearchParams({
+            action: "generate_content",  // Identificador de la acción
+            prompt: prompt               // El contenido del prompt
         });
 
-        // Response
-        const resultado = await respuesta.text();
-        console.log("Respuesta del servidor:", resultado);
+        const response = await fetch(`index.php?${params.toString()}`, {
+            method: "GET",  // Usamos GET en lugar de POST
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Respuesta del backend:", data);
+        return data;
     } catch (error) {
-        console.error("Error al enviar los datos:", error);
+        console.error("Error al obtener contenido del backend:", error);
     }
+}
 
-    sendUrlToLocalServer(image);
+/*
+async function saveData() {
+    // Send the action to the backend
+    try {
+        const params = new URLSearchParams({
+            action: "save_news"
+        });
 
+        const response = await fetch(`index.php${params.toString()}`, {
+            method: "GET",
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}`);
+        }
+
+    } catch (error) {
+
+        console.log("Error al enviar la acción de guardar");
+
+    }
 }
 
 
+/*
 // This function calls the API to generate text
 async function generateText(prompt) {
 
@@ -206,3 +223,4 @@ async function sendUrlToLocalServer(url) {
         console.log("Error al enviar la URL al servidor: " + e.message);
     }
 }
+*/

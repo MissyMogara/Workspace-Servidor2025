@@ -23,20 +23,21 @@ class ControladorNoticias {
     /**
      * This function saves title and content to the database
      */
-    public static function GuardarNoticia($title, $content) {
+    public static function GuardarNoticia($title, $content, $img) {
 
-        ModeloNoticias::InsertNoticia($title, $content);
+        ModeloNoticias::InsertNoticia($title, $content, $img);
+        
 
     }
 
     /**
      * This function updates img on database
      */
-    public static function UpdateNoticia($id) {
+    // public static function UpdateNoticia($id) {
 
-        ModeloNoticias::CambiarNoticia($id);
+    //     ModeloNoticias::CambiarNoticia($id);
 
-    }
+    // }
 
 }
 

@@ -25,7 +25,7 @@ class ModeloNoticias {
 
     }
     
-    public static function InsertNoticia($title, $content) {
+    public static function InsertNoticia($title, $content, $image) {
 
         $conexion = new ConexionBD();
         $baseDatos = $conexion->getBaseDatos();
@@ -39,7 +39,8 @@ class ModeloNoticias {
             "id" => $number + 1,
             "title" => $title,
             "content" => $content,
-            "date" => $currentDate
+            "date" => $currentDate,
+            "image" => $image
         ];
 
         $collection->insertOne($noticia);
@@ -48,23 +49,23 @@ class ModeloNoticias {
 
     }
 
-    public static function CambiarNoticia($id) {
+    // public static function CambiarNoticia($id) {
         
-        $conexion = new ConexionBD();
-        $baseDatos = $conexion->getBaseDatos();
-        $collection = $baseDatos->noticias;
+    //     $conexion = new ConexionBD();
+    //     $baseDatos = $conexion->getBaseDatos();
+    //     $collection = $baseDatos->noticias;
 
-        $number = $collection->countDocuments();
+    //     $number = $collection->countDocuments();
 
-        $filter = ['id' => $number];
+    //     $filter = ['id' => $number];
 
-        $update = ['$set' => ['image' => $id]];
+    //     $update = ['$set' => ['image' => $id]];
 
-        $collection->updateOne($filter, $update);
+    //     $collection->updateOne($filter, $update);
 
-        $conexion->cerrarConexion();
+    //     $conexion->cerrarConexion();
 
-    }
+    // }
 
 }
 
