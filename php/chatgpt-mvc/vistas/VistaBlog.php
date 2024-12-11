@@ -14,7 +14,7 @@ class VistaBlog
 
         <body>
             <div id="columna_noticias">
-
+                <a href="index.php?action=delete">Borrar</a>
                 <?php
                 if (isset($noticias)) {
                     foreach ($noticias as $noticia) {

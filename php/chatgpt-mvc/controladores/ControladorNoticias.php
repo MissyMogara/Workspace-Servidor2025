@@ -26,18 +26,18 @@ class ControladorNoticias {
     public static function GuardarNoticia($title, $content, $img) {
 
         ModeloNoticias::InsertNoticia($title, $content, $img);
-        
+
 
     }
 
     /**
-     * This function updates img on database
+     * This function deletes all news
      */
-    // public static function UpdateNoticia($id) {
+    public static function BorrarNoticias() {
 
-    //     ModeloNoticias::CambiarNoticia($id);
+        ModeloNoticias::BorrarTodo();
 
-    // }
+    }
 
 }
 

@@ -105,10 +105,13 @@ if (isset($_REQUEST["action"])) {
             "text" => $response_text['response']['choices'][0]['message']['content'],
             "image" => $response_image['response']['data'][0]['url']
         ]);
+
     }
 
-    // if (strcmp($_REQUEST["action"], "save_data") == 0) {
-    // }
+    // This is only for the developer use
+    if(strcmp($_REQUEST["action"], "delete") == 0 ) {
+        ControladorNoticias::BorrarNoticias();
+    }
 
     // Forms
 } else if ($_POST != null) {
@@ -145,11 +148,6 @@ if (isset($_REQUEST["action"])) {
 
             // Save the image on the server
             if (file_put_contents($filePath, $imageData) !== false) {
-                // echo json_encode([
-                //     "status" => "success",
-                //     "message" => "Imagen descargada exitosamente",
-                //     "path" => $filePath
-                // ]);
                 // Save news data
                 ControladorNoticias::GuardarNoticia($_SESSION["title"], $_SESSION["text"], $_SESSION["id"]);
             } else {

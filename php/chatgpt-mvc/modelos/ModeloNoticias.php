@@ -1,10 +1,12 @@
-<?php 
+<?php
 
 namespace Chatgpt\modelos;
 
-class ModeloNoticias {
+class ModeloNoticias
+{
 
-    public static function getNoticias() {
+    public static function getNoticias()
+    {
 
         $conexion = new ConexionBD();
         $baseDatos = $conexion->getBaseDatos();
@@ -15,17 +17,17 @@ class ModeloNoticias {
         $noticias_arr = [];
 
         foreach ($noticias as $noticia) {
-            $objNoticia = new Noticia(0 , $noticia["id"], $noticia["title"], $noticia["content"], $noticia["date"], $noticia["image"]);
+            $objNoticia = new Noticia(0, $noticia["id"], $noticia["title"], $noticia["content"], $noticia["date"], $noticia["image"]);
             array_push($noticias_arr, $objNoticia);
         }
 
         return $noticias_arr;
 
         $conexion->cerrarConexion();
-
     }
-    
-    public static function InsertNoticia($title, $content, $image) {
+
+    public static function InsertNoticia($title, $content, $image)
+    {
 
         $conexion = new ConexionBD();
         $baseDatos = $conexion->getBaseDatos();
@@ -46,27 +48,21 @@ class ModeloNoticias {
         $collection->insertOne($noticia);
 
         $conexion->cerrarConexion();
-
     }
 
-    // public static function CambiarNoticia($id) {
-        
-    //     $conexion = new ConexionBD();
-    //     $baseDatos = $conexion->getBaseDatos();
-    //     $collection = $baseDatos->noticias;
+    // Delete all news, this function is only if you generated a lot of news, 
+    //not gonna lie this function is for the developer, on production this never gonna be live
+    public static function BorrarTodo()
+    {
 
-    //     $number = $collection->countDocuments();
+        $conexion = new ConexionBD();
+        $baseDatos = $conexion->getBaseDatos();
+        $collection = $baseDatos->noticias;
 
-    //     $filter = ['id' => $number];
+        $deleteResult = $collection->deleteMany([]);
 
-    //     $update = ['$set' => ['image' => $id]];
+        echo "Documentos eliminados: " . $deleteResult->getDeletedCount() . "\n";
 
-    //     $collection->updateOne($filter, $update);
-
-    //     $conexion->cerrarConexion();
-
-    // }
-
+        $conexion->cerrarConexion();
+    }
 }
-
-?>
