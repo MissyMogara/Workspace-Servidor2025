@@ -5,7 +5,7 @@ async function inicio() {
 
     if (document.getElementById("previsualizar")) {
 
-        //document.getElementById('guardar').addEventListener('click', saveData);
+        
 
         document.getElementById("previsualizar").addEventListener("click", async function () {
 
