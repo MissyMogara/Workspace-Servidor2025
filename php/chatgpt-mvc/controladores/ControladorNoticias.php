@@ -27,6 +27,10 @@ class ControladorNoticias {
 
         ModeloNoticias::InsertNoticia($title, $content, $img);
 
+        $noticias = ModeloNoticias::getNoticias();
+
+        VistaBlog::render($noticias);
+
 
     }
 
