@@ -129,7 +129,7 @@ if (isset($_REQUEST["action"])) {
 
         $imageUrl = $_SESSION["image"]; // Get the URL from the GET parameters
 
-        $imageUrl = urldecode($imageUrl);
+        
 
         // Attempt to download the image from the provided URL
         $imageData = file_get_contents($imageUrl);
